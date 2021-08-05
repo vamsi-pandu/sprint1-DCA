@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.dca.entity.Feed;
+import com.cg.dca.exception.FeedAlreadyFoundException;
 import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.exception.UnknownFeedException;
 import com.cg.dca.repository.IFeedRepository;
@@ -18,14 +19,14 @@ public class IFeedServiceImpl implements IFeedService{
 	IFeedRepository feedRepo;
 	
 	@Override
-	public Feed addFeed(Feed feed) throws UnknownFeedException{
+	public Feed addFeed(Feed feed) {
 		if(feedRepo.existsById(feed.getFeedId())) 
-			throw new UnknownFeedException("Feed with "+feed.getFeedId()+" already exists");
+			throw new FeedAlreadyFoundException("Feed with "+feed.getFeedId()+" already exists");
 		return feedRepo.save(feed);
 	}
 
 	@Override
-	public Feed editFeed(Feed feed) throws UnknownFeedException {
+	public Feed editFeed(Feed feed) {
 		if(feedRepo.existsById(feed.getFeedId())) 
 			return feedRepo.save(feed);
 		else
@@ -35,13 +36,13 @@ public class IFeedServiceImpl implements IFeedService{
 	}
 
 	@Override
-	public Feed likeFeed(int feedId) throws UnknownFeedException {
+	public Feed likeFeed(int feedId) {
 		
 		return null;
 	}
 
 	@Override
-	public Optional<Feed> getFeed(int feedId) throws UnknownFeedException {
+	public Optional<Feed> getFeed(int feedId) {
 		Optional<Feed> feed = feedRepo.findById(feedId);
 		if(feed.isPresent())
 		return feed;
@@ -50,7 +51,7 @@ public class IFeedServiceImpl implements IFeedService{
 	}
 
 	@Override
-	public Optional<Feed> removeFeed(int feedId) throws UnknownFeedException {
+	public Optional<Feed> removeFeed(int feedId) {
 		Optional<Feed> feed = feedRepo.findById(feedId);
 		if(feed.isPresent()) {
 			feedRepo.deleteById(feedId);
@@ -61,7 +62,7 @@ public class IFeedServiceImpl implements IFeedService{
 	}
 
 	@Override
-	public List<Feed> getFeedsByDeveloper(int devId) throws UnknownDeveloperException {
+	public List<Feed> getFeedsByDeveloper(int devId) {
 		List<Feed> listOfFeedsByDev = feedRepo.fetchFeedsByDeveloper(devId);
 		if(listOfFeedsByDev.isEmpty())
 			throw new UnknownDeveloperException("No feed found for the developer with "+devId);
@@ -76,7 +77,7 @@ public class IFeedServiceImpl implements IFeedService{
 	}
 
 	@Override
-	public List<Feed> getFeedsByTopic(String topic) throws UnknownFeedException {
+	public List<Feed> getFeedsByTopic(String topic) {
 		List<Feed> listOfFeedByTopic = feedRepo.fetchFeedsByTopic(topic);
 		if(listOfFeedByTopic.isEmpty())
 			throw new UnknownFeedException("No feed found with topic "+topic);

@@ -9,19 +9,19 @@ import com.cg.dca.exception.UnknownFeedException;
 
 public interface IFeedService {
 
-	Feed addFeed(Feed feed) throws UnknownFeedException;
+	Feed addFeed(Feed feed);
 	
-	Feed editFeed(Feed feed) throws UnknownFeedException;
+	Feed editFeed(Feed feed);
 	
-	Feed likeFeed(int feedId) throws UnknownFeedException;
+	Feed likeFeed(int feedId);
 	
-	Optional<Feed> getFeed(int feedId) throws UnknownFeedException;
+	Optional<Feed> getFeed(int feedId);
 	
-	Optional<Feed> removeFeed(int feedId) throws UnknownFeedException;
+	Optional<Feed> removeFeed(int feedId);
 	
-	List<Feed> getFeedsByDeveloper(int devId) throws UnknownDeveloperException;
+	List<Feed> getFeedsByDeveloper(int devId);
 	
 	List<Feed> getFeedsByKeyword(String keyword);
 	
-	List<Feed> getFeedsByTopic(String topic) throws UnknownFeedException;
+	List<Feed> getFeedsByTopic(String topic);
 }
