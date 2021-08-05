@@ -30,7 +30,7 @@ public class IResponseServiceImpl implements IResponseService {
 	@Override
 	public Optional<Response> editResponse(Response resp)throws UnknownResponseException {
 		Optional<Response> response = responserepo.findById(resp.getRespId());
-		if(response.isEmpty()) {
+		if(!(response.isPresent())) {
 			throw new UnknownResponseException("Response with id: " + resp.getRespId() + " not present:NO SUCH RESPONSE TO EDIT");
 		}
 		responserepo.save(resp);
