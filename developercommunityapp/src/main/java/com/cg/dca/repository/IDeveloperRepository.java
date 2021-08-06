@@ -2,10 +2,12 @@ package com.cg.dca.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.cg.dca.entity.Developer;
 import com.cg.dca.exception.UnknownDeveloperException;
 
-public interface IDeveloperRepository {
+public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 
 	Developer saveDeveloper(Developer dev);
 	
@@ -15,5 +17,7 @@ public interface IDeveloperRepository {
 	
 	Developer fetchDeveloper(int devId) throws UnknownDeveloperException;
 	
+	
 	List<Developer> fetchAllDevelopers();
+	
 }
