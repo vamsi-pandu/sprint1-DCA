@@ -1,17 +1,18 @@
 package com.cg.dca.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.cg.dca.entity.Feed;
-import com.cg.dca.exception.UnknownDeveloperException;
-import com.cg.dca.exception.UnknownFeedException;
 
+@Repository
 public interface IFeedRepository extends JpaRepository<Feed, Integer>{
 
-	/*Feed saveFeed(Feed feed);
+/*  Feed saveFeed(Feed feed);
 	
 	Feed updateFeed(Feed feed);
 	
@@ -19,13 +20,14 @@ public interface IFeedRepository extends JpaRepository<Feed, Integer>{
 	
 	Feed fetchFeed(int feedId) throws UnknownFeedException;
 	
-	Optional<Feed> deleteFeed(Optional<Feed> feed) throws UnknownFeedException;*/
+	Optional<Feed> deleteFeed(Optional<Feed> feed) throws UnknownFeedException;    */
 	
-	List<Feed> fetchFeedsByDeveloper(int devId) throws UnknownDeveloperException;
+	List<Feed> findAllByDeveloper_DevId(int devId);
 	
-	List<Feed> fetchFeedsByKeyword(String keyword);
+	@Query("SELECT b FROM Feed b WHERE b.query like %:keyword%")
+	List<Feed> findByKeyword(@Param("keyword") String keyword);
 	
-	List<Feed> fetchFeedsByTopic(String topic);
+	List<Feed> findAllByTopic(String topic);
 
 	
 }

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name ="response")
 
@@ -36,14 +38,14 @@ public class Response {
 	
 	@OneToOne
 	@JoinColumn(name ="fk_dev_id")
-	
-	private Developer dev;
+	@JsonBackReference
+	private Developer developer;
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_feed_id")
 	private Feed feed;
 	
-	public Response(int respId, String answer, LocalDate respDate, LocalTime respTime, int accuracy, Developer dev,
+	public Response(int respId, String answer, LocalDate respDate, LocalTime respTime, int accuracy, Developer developer,
 			Feed feed) {
 		super();
 		this.respId = respId;
@@ -51,12 +53,12 @@ public class Response {
 		this.respDate = respDate;
 		this.respTime = respTime;
 		this.accuracy = accuracy;
-		this.dev = dev;
+		this.developer = developer;
 		this.feed = feed;
 	}
 	public Response() {
 		super();
-	}
+	} 
 	public int getRespId() {
 		return respId;
 	}
@@ -87,11 +89,11 @@ public class Response {
 	public void setAccuracy(int accuracy) {
 		this.accuracy = accuracy;
 	}
-	public Developer getDev() {
-		return dev;
+	public Developer getDeveloper() {
+		return developer;
 	}
-	public void setDev(Developer dev) {
-		this.dev = dev;
+	public void setDeveloper(Developer developer) {
+		this.developer = developer;
 	}
 	public Feed getFeed() {
 		return feed;

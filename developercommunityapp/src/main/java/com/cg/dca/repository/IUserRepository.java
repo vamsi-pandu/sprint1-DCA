@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.dca.entity.User;
 
 @Repository
-public interface IUserRepository extends JpaRepository<User, Integer> {
+public interface IUserRepository extends JpaRepository<User, String> {
 	
 	User login(User user);
 	
