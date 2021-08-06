@@ -18,7 +18,7 @@ public class IResponseServiceImpl implements IResponseService {
 	IResponseRepository responserepo;
 
 	@Override
-	public Optional<Response> addResponse(Response resp) throws ResponseAlreadyExistsException {
+	public Optional<Response> addResponse(Response resp)  {
 		Optional<Response> response = responserepo.findById(resp.getRespId());
 		if(response.isPresent()) {
 			throw new ResponseAlreadyExistsException("Response with response id: " +resp.getRespId() + " already exists:RESPONSE CAN'T BE ADDED");
@@ -28,7 +28,7 @@ public class IResponseServiceImpl implements IResponseService {
 	}
 
 	@Override
-	public Optional<Response> editResponse(Response resp)throws UnknownResponseException {
+	public Optional<Response> editResponse(Response resp){
 		Optional<Response> response = responserepo.findById(resp.getRespId());
 		if(!(response.isPresent())) {
 			throw new UnknownResponseException("Response with id: " + resp.getRespId() + " not present:NO SUCH RESPONSE TO EDIT");
@@ -38,7 +38,7 @@ public class IResponseServiceImpl implements IResponseService {
 	}
 
 	@Override
-	public Optional<Response> removeResponse(int respId) throws UnknownResponseException {
+	public Optional<Response> removeResponse(int respId)  {
 		Optional<Response> response = responserepo.findById(respId);
 		if(!response.isPresent()){
 			throw new UnknownResponseException("Response with id: " + respId + " not present:NO SUCH RESPONSE TO DELETE");
@@ -49,19 +49,20 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public Optional<Response> likeResponse(int respId) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
-	public List<Response> getResponseByFeed(int feedId) throws UnknownFeedException {
-		// TODO Auto-generated method stub
+	public List<Response> getResponseByFeed(int feedId)  {
+		List<Response> listResponseByFeeed = (List<Response>)responserepo.findAllById(feedId);
 		return null;
+		
 	}
 
 	@Override
-	public List<Response> getResponseByDeveloper(int devId) throws UnknownDeveloperException {
-		// TODO Auto-generated method stub
+	public List<Response> getResponseByDeveloper(int devId)  {
+		
 		return null;
 	}
 

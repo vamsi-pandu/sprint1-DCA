@@ -11,15 +11,15 @@ import com.cg.dca.exception.UnknownResponseException;
 
 public interface IResponseService {
 	
-	Optional<Response> addResponse(Response resp)throws ResponseAlreadyExistsException;
+	Optional<Response> addResponse(Response resp);
 	
-	Optional<Response> editResponse(Response resp)throws UnknownResponseException;
+	Optional<Response> editResponse(Response resp);
 	
-	Optional<Response> removeResponse(int respId) throws UnknownResponseException;
+	Optional<Response> removeResponse(int respId) ;
 	
 	Optional<Response> likeResponse(int respId);
 	
-	List<Response> getResponseByFeed(int feedId) throws UnknownFeedException;
+	List<Response> getResponseByFeed(int feedId) ;
 	
-	List<Response> getResponseByDeveloper(int devId) throws UnknownDeveloperException;
+	List<Response> getResponseByDeveloper(int devId);
 }
