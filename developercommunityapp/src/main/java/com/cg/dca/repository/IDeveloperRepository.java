@@ -10,11 +10,13 @@ import com.cg.dca.exception.UnknownDeveloperException;
 @Repository
 public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 
-	Developer saveDeveloper(Developer dev);
+	/*Developer saveDeveloper(Developer dev);
 	
 	Developer updateDeveloper(Developer dev);
+	*/
 	
 	Developer statusUpdate(Developer dev);
+
 	
 	Developer fetchDeveloper(int devId) throws UnknownDeveloperException;
 	
