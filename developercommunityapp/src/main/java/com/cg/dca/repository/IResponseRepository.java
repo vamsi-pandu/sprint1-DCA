@@ -17,7 +17,7 @@ public interface IResponseRepository extends JpaRepository<Response, Integer> {
 	
 	Response updateResponse(Response resp);
 	
-	Response removeResponse(int respId) throws UnknownResponseException;
+	Response removeResponse(int respId) throws UnknownResponseException;             
 	
 	Response likeResponse(int respId);
 	
