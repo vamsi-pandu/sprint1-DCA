@@ -55,7 +55,7 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public List<Response> getResponseByFeed(int feedId)  {
-		List<Response> listResponseByFeeed = (List<Response>)responserepo.findAllById(feedId);
+		
 		return null;
 		
 	}
