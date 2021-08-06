@@ -3,10 +3,14 @@ package com.cg.dca.entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,12 +21,28 @@ public class Response {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int respId;
+	
+	@Column(name = "answer")
 	private String answer;
+	
+	@Column(name = "resp_date")
 	private LocalDate respDate;
+	
+	@Column(name = "resp_time")
 	private LocalTime respTime;
+	
+	@Column(name = "accuracy")
 	private int accuracy;	// Likes on Response increase accuracy
+	
+	@OneToOne
+	@JoinColumn(name ="fk_dev_id")
+	
 	private Developer dev;
+	
+	@ManyToOne
+	@JoinColumn(name ="fk_feed_id")
 	private Feed feed;
+	
 	public Response(int respId, String answer, LocalDate respDate, LocalTime respTime, int accuracy, Developer dev,
 			Feed feed) {
 		super();
@@ -79,6 +99,5 @@ public class Response {
 	public void setFeed(Feed feed) {
 		this.feed = feed;
 	}
-
 
 }
