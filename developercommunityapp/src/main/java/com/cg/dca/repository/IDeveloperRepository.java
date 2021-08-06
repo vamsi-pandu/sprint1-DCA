@@ -14,7 +14,7 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	
 	Developer updateDeveloper(Developer dev);
 	
-	
+	*/
 	Developer statusUpdate(Developer dev);
 
 	
@@ -22,5 +22,5 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	
 	
 	List<Developer> fetchAllDevelopers();
-	*/
+	
 }
