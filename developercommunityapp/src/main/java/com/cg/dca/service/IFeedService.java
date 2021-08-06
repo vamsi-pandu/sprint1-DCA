@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.dca.entity.Feed;
-import com.cg.dca.exception.UnknownDeveloperException;
-import com.cg.dca.exception.UnknownFeedException;
 
 public interface IFeedService {
 

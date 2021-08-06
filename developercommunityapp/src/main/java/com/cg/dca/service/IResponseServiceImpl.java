@@ -55,7 +55,6 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public List<Response> getResponseByFeed(int feedId)  {
-		
 		return null;
 		
 	}

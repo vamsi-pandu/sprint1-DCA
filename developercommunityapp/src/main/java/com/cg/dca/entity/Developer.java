@@ -46,8 +46,27 @@ public class Developer implements Serializable {
 	@Column(name="is_blocked")
 	private Boolean isBlocked;
 	
+	public Developer() {
+		super();
+	}
 	
-	
+	public Developer(int devId, String name, String email, String skillLevel, LocalDate memberSince, int totalFeeds,
+			int reputations, User user, List<Feed> feedList, Boolean isVerified, Boolean isBlocked) {
+		super();
+		this.devId = devId;
+		this.name = name;
+		this.email = email;
+		this.skillLevel = skillLevel;
+		this.memberSince = memberSince;
+		this.totalFeeds = totalFeeds;
+		this.reputations = reputations;
+		this.user = user;
+		this.feedList = feedList;
+		this.isVerified = isVerified;
+		this.isBlocked = isBlocked;
+	}
+
+
 	public int getDevId() {
 		return devId;
 	}
@@ -122,7 +141,5 @@ public class Developer implements Serializable {
 				+ ", user=" + user + ", feedList=" + feedList + ", isVerified=" + isVerified + ", isBlocked="
 				+ isBlocked + "]";
 	}
-
-
 
 }

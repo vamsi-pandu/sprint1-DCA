@@ -31,8 +31,6 @@ public class IFeedServiceImpl implements IFeedService{
 			return feedRepo.save(feed);
 		else
 			throw new UnknownFeedException("Feed with "+feed.getFeedId()+" does not exists");
-		
-		
 	}
 
 	@Override
@@ -63,26 +61,27 @@ public class IFeedServiceImpl implements IFeedService{
 
 	@Override
 	public List<Feed> getFeedsByDeveloper(int devId) {
-		List<Feed> listOfFeedsByDev = feedRepo.fetchFeedsByDeveloper(devId);
+		List<Feed> listOfFeedsByDev = feedRepo.findAllByDeveloper_DevId(devId);
 		if(listOfFeedsByDev.isEmpty())
 			throw new UnknownDeveloperException("No feed found for the developer with "+devId);
 		return listOfFeedsByDev;
-		
 	}
-
+	
 	@Override
 	public List<Feed> getFeedsByKeyword(String keyword) {
+		List<Feed> listOfFeedByKeyword = feedRepo.findByKeyword(keyword);
 		
-		return null;
+		if(listOfFeedByKeyword.isEmpty())
+			throw new UnknownFeedException("No feed with keyword "+keyword+" found");
+		return listOfFeedByKeyword;
 	}
 
 	@Override
 	public List<Feed> getFeedsByTopic(String topic) {
-		List<Feed> listOfFeedByTopic = feedRepo.fetchFeedsByTopic(topic);
+		List<Feed> listOfFeedByTopic = feedRepo.findAllByTopic(topic);
 		if(listOfFeedByTopic.isEmpty())
 			throw new UnknownFeedException("No feed found with topic "+topic);
 		return listOfFeedByTopic;
-		
 	}
 
 }

@@ -19,6 +19,17 @@ public class User {
 	@Column(name = "role")	
 	private String role;
 
+	public User(String userId, String password, String role) {
+		super();
+		this.userId = userId;
+		this.password = password;
+		this.role = role;
+	}
+
+	public User() {
+		super();
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -42,7 +53,4 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
-	
 }
