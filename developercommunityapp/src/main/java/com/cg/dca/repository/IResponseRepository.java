@@ -21,7 +21,7 @@ public interface IResponseRepository extends JpaRepository<Response, Integer> {
 	
 	Response likeResponse(int respId);  */
 	
-	List<Response> findAllResponseByFeed(int feedId) throws UnknownFeedException;
+	List<Response> findAllResponseByFeed_FeedId(int feedId) throws UnknownFeedException;
 	
-	List<Response> findAllResponseByDeveloper(int devId) throws UnknownDeveloperException;
+	List<Response> findAllResponseByDeveloper_DevId(int devId) throws UnknownDeveloperException;
 }
