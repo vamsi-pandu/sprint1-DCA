@@ -19,7 +19,11 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	Developer statusUpdate(Developer dev);
 
 	
+<<<<<<< Updated upstream
 	Optional<Developer> findById(int devId);
+=======
+	Developer findById(int devId);
+>>>>>>> Stashed changes
 	
 	
 	List<Developer> findAll();

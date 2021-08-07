@@ -11,9 +11,9 @@ import com.cg.dca.exception.UnknownDeveloperException;
 @Service
 public interface IDeveloperService {
 
-	Optional<Developer> addDeveloper(Developer dev);
+	 Optional<Developer> addDeveloper(Developer dev);
 	
-	Optional<Developer> editDeveloper(Developer dev);
+	 Optional<Developer> editDeveloper(Developer dev);
 	
      String statusUpdate(Developer dev);	// Block/Unblock
 	
