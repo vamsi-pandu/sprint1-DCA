@@ -1,11 +1,10 @@
 package com.cg.dca.controllers;
 
-<<<<<<< Updated upstream
+
 import java.util.List;
 import java.util.Optional;
 
-=======
->>>>>>> Stashed changes
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,31 +13,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-<<<<<<< Updated upstream
-=======
+
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
->>>>>>> Stashed changes
+
 
 import com.cg.dca.entity.Developer;
 import com.cg.dca.exception.DeveloperAlreadyExistsException;
 import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.service.IDeveloperServiceImpl;
-<<<<<<< Updated upstream
 
 
-public class DeveloperController {
 
-=======
-import com.google.common.base.Optional;
 
-import antlr.collections.List;
 
 
 @RestController
 @RequestMapping("/developer")
 public class DeveloperController {
->>>>>>> Stashed changes
+
 	@Autowired
 	IDeveloperServiceImpl service;
 
@@ -51,11 +45,11 @@ public class DeveloperController {
 
 	@GetMapping("/getDeveloperById/{devId}")
 	public ResponseEntity<Object> getDeveloper(@PathVariable int devId) throws UnknownDeveloperException {
-<<<<<<< Updated upstream
+
 		Optional<Developer> developer = service.getDeveloper(devId);
-=======
-		Optional<Developer> developer = service.();
->>>>>>> Stashed changes
+
+	
+
 		return new ResponseEntity<Object>(developer.get(), HttpStatus.OK);
 
 	}
@@ -83,8 +77,5 @@ public class DeveloperController {
 
 	}
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 }
