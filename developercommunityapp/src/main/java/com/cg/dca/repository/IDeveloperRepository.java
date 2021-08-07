@@ -15,17 +15,13 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	
 	Developer updateDeveloper(Developer dev);
 	
-	
+	*/
 	Developer statusUpdate(Developer dev);
 
 	
-	Developer fetchDeveloper(int devId);
-	
-	
-	List<Developer> fetchAllDevelopers();
-	*/
-	
 	Optional<Developer> findById(int devId);
 	
+	
 	List<Developer> findAll();
+	
 }
