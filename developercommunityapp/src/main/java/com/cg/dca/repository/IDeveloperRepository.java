@@ -1,6 +1,7 @@
 package com.cg.dca.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	
 	Developer updateDeveloper(Developer dev);
 	
-	*/
+	
 	Developer statusUpdate(Developer dev);
 
 	
@@ -22,5 +23,9 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	
 	
 	List<Developer> fetchAllDevelopers();
+	*/
 	
+	Optional<Developer> findById(int devId);
+	
+	List<Developer> findAll();
 }

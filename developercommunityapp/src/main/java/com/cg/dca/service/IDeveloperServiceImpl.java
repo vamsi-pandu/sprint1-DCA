@@ -18,25 +18,25 @@ import com.cg.dca.repository.IDeveloperRepository;
 public class IDeveloperServiceImpl implements IDeveloperService   {
 	
 	@Autowired
-	IDeveloperRepository devrepos;
+	IDeveloperRepository devRepos;
 
 	@Override
 	public Optional<Developer> addDeveloper(Developer dev) {
-		Optional<Developer> exi = devrepos.findById(dev.getDevId());
+		Optional<Developer> exi = devRepos.findById(dev.getDevId());
 		if(exi.isPresent()) {
 			throw new DeveloperAlreadyExistsException ("Developer With Id"+dev.getDevId()+"Already exist");
 		}
-		devrepos.save(dev);
+		devRepos.save(dev);
 		return exi;
 	}
 
 	@Override
 	public Optional <Developer> editDeveloper(Developer dev) {
-		Optional<Developer> edit = devrepos.findById(dev.getDevId());
+		Optional<Developer> edit = devRepos.findById(dev.getDevId());
 		if(!edit.isPresent()) {
 			throw new UnknownDeveloperException("Developer With Id "+dev.getDevId()+" Not Exist");
 		}
-		devrepos.save(dev);
+		devRepos.save(dev);
 		return edit;
 	}
 
@@ -51,7 +51,7 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 
 	@Override
 	public Optional<Developer> getDeveloper(int devId) throws UnknownDeveloperException {
-		Optional<Developer> get = devrepos.findById(devId);
+		Optional<Developer> get = devRepos.findById(devId);
 		if(!get.isPresent()) {
 			throw new UnknownDeveloperException("Developer With Id "+devId+" Not Exist");
 		}
@@ -61,7 +61,7 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 
 	@Override
 	public List<Developer> getAllDevelopers() {
-		List<Developer> getall= devrepos.findAll();
+		List<Developer> getall= devRepos.findAll();
 		return getall;
 	}
 }
