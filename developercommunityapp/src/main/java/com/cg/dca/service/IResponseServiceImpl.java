@@ -57,7 +57,7 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public List<Response> getResponseByFeed(int feedId)  {
-		List<Response> ListOfResponsesByFeed = responserepo.findAllResponseByFeed(feedId);
+		List<Response> ListOfResponsesByFeed = responserepo.findAllResponseByFeed_FeedId(feedId);
 		if(ListOfResponsesByFeed.isEmpty()) {
 			throw new UnknownResponseException("No Responses found for the feed id: " + feedId);
 		}
@@ -67,7 +67,7 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public List<Response> getResponseByDeveloper(int devId)  {
-		List<Response> ListOfResponseByDeveloper = responserepo.findAllResponseByDeveloper(devId);
+		List<Response> ListOfResponseByDeveloper = responserepo.findAllResponseByDeveloper_DevId(devId);
 		if(ListOfResponseByDeveloper.isEmpty()) {
 			throw new UnknownResponseException("No Responses found for the feed id: " + devId);
 		}
