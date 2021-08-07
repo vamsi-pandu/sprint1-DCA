@@ -13,15 +13,15 @@ import com.cg.dca.exception.UnknownResponseException;
 @Repository
 public interface IResponseRepository extends JpaRepository<Response, Integer> {
 	
-/*	Response saveResponse(Response resp);
+	Response saveResponse(Response resp);
 	
 	Response updateResponse(Response resp);
 	
 	Response removeResponse(int respId) throws UnknownResponseException;             
 	
-	Response likeResponse(int respId); */
+	Response likeResponse(int respId);
 	
-	List<Response> getResponseByFeed(int feedId) throws UnknownFeedException;
+	List<Response> findAllResponseByFeed(int feedId) throws UnknownFeedException;
 	
-	List<Response> getResponseByDeveloper(int devId) throws UnknownDeveloperException;
+	List<Response> findAllResponseByDeveloper(int devId) throws UnknownDeveloperException;
 }
