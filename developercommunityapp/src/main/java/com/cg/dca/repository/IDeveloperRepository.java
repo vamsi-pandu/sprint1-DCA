@@ -18,7 +18,7 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	Developer statusUpdate(Developer dev);
 
 	
-	Developer fetchDeveloper(int devId) throws UnknownDeveloperException;
+	Developer fetchDeveloper(int devId);
 	
 	
 	List<Developer> fetchAllDevelopers();

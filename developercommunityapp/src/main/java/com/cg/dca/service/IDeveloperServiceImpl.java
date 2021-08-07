@@ -64,9 +64,6 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 		List<Developer> getall= devrepos.findAll();
 		return getall;
 	}
-
-
-	
 }
 
 
