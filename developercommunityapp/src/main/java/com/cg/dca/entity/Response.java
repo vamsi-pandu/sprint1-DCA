@@ -101,5 +101,11 @@ public class Response {
 	public void setFeed(Feed feed) {
 		this.feed = feed;
 	}
+	@Override
+	public String toString() {
+		return "Response [respId=" + respId + ", answer=" + answer + ", respDate=" + respDate + ", respTime=" + respTime
+				+ ", developer=" + developer + ", feed=" + feed + "]";
+	}
+	
 
 }
