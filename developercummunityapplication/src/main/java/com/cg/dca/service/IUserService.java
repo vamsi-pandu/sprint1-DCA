@@ -7,9 +7,9 @@ import com.cg.dca.entity.User;
 
 public interface IUserService {
 	
-	/*
+
 	
-	User logout(User user);*/
+	User logout(User user);
 	
     List<User> getAllUsers();
 	

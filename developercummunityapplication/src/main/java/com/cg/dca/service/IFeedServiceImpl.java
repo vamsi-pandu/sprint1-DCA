@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.dca.entity.Feed;
+import com.cg.dca.entity.Topic;
 import com.cg.dca.exception.FeedAlreadyFoundException;
 import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.exception.UnknownFeedException;

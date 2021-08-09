@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.cg.dca.entity.Response;
 import com.cg.dca.exception.ResponseAlreadyExistsException;
-import com.cg.dca.exception.UnknownDeveloperException;
-import com.cg.dca.exception.UnknownFeedException;
 import com.cg.dca.exception.UnknownResponseException;
 import com.cg.dca.repository.IResponseRepository;
 

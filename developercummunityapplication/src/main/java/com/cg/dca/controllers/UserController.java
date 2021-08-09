@@ -19,7 +19,7 @@ import com.cg.dca.entity.User;
 import com.cg.dca.service.IUserService;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("user")
 public class UserController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class UserController {
 	
 		
 		@PostMapping("userLogin")
-		public ResponseEntity<String> saveFeed(@Valid @RequestBody User userCredentials){
+		public ResponseEntity<String> userLoginCheck(@Valid @RequestBody User userCredentials){
 			
 		String response =  service.checkLogin(userCredentials);
 		return new ResponseEntity<String>(response,HttpStatus.OK);
@@ -36,14 +36,14 @@ public class UserController {
 		
 
 		@GetMapping("getLogins")
-		public ResponseEntity<?> getEmployees(){
+		public ResponseEntity<?> getAllUsers(){
 
 		List<User> list = (List<User>) service.getAllUsers();
 		return new ResponseEntity<Object>(list,HttpStatus.OK);
 		}
 		
 		@GetMapping("{userId}")
-		public ResponseEntity<User> getEmployee(@PathVariable("userId") String userId){
+		public ResponseEntity<User> getUserById(@PathVariable("userId") String userId){
 			
 		Optional<User> user = service.getUserById(userId);
         return new ResponseEntity<User>(user.get(),HttpStatus.OK);

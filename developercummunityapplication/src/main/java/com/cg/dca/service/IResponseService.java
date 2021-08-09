@@ -4,10 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.dca.entity.Response;
-import com.cg.dca.exception.ResponseAlreadyExistsException;
-import com.cg.dca.exception.UnknownDeveloperException;
-import com.cg.dca.exception.UnknownFeedException;
-import com.cg.dca.exception.UnknownResponseException;
 
 public interface IResponseService {
 	

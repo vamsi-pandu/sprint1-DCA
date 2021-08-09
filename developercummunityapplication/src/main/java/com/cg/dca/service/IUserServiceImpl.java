@@ -4,18 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cg.dca.entity.User;
 import com.cg.dca.exception.UserNotFoundException;
 import com.cg.dca.repository.IUserRepository;
 
+@Service
 public class IUserServiceImpl implements IUserService{
 
 	@Autowired
-	private IUserRepository userRepo;
-	
-	
-
+    IUserRepository userRepo;
 	
 	@Override
 	public List<User> getAllUsers() {
@@ -44,11 +43,11 @@ public class IUserServiceImpl implements IUserService{
 		
 	}
 
-	/*@Override
+	@Override
 	public User logout(User user) {
 		
 		return null;
-	}*/
+	}
 
 	
 
