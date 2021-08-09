@@ -38,11 +38,11 @@ public class Feed {
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_developer_id")
-	@JsonBackReference
+	@JsonBackReference // is used to mark child objects.
 	private Developer developer;
 	
 	@OneToMany(mappedBy="feed",cascade=CascadeType.ALL)
-	@JsonIgnore
+	@JsonIgnore     //is used at field level to mark a property or list of properties to be ignored.
 	private List<Response> responses;
 	
 	private int totalComments;
