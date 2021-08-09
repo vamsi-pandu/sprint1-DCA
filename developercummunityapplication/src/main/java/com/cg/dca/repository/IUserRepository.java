@@ -7,8 +7,10 @@ import com.cg.dca.entity.User;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, String> {
+
+	User findByUserIdAndPassword(String userId, String password);
 	
-/*	User login(User user);
+/*	
 	
 	User logout(User user);  */
 }

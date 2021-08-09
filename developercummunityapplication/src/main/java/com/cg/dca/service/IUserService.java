@@ -7,11 +7,11 @@ import com.cg.dca.entity.User;
 
 public interface IUserService {
 	
-/*	User login(User user);
+	/*
 	
-	User logout(User user);
-	*/
-List<User> getAllUsers();
+	User logout(User user);*/
+	
+    List<User> getAllUsers();
 	
 	Optional<User>  getUserById(String UserId);
 	
