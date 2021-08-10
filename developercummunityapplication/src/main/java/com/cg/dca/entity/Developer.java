@@ -92,9 +92,6 @@ public class Developer implements Serializable {
 		this.isBlocked = isBlocked;
 	}
 
-
-
-
 	public int getDevId() {
 		return devId;
 	}
