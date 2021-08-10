@@ -34,8 +34,7 @@ class IResponseServiceImplTest {
 	void testAddResponse() {
 		Response r= new Response();
 		r.setRespId(101);
-		r.setRespTime(LocalDateTime.now());
-		r.setRespDate(LocalDateTime .now());
+		r.setResponseTime(LocalDateTime.now());
 		r.setAnswer("Responses are listed successfully");
 		when(responseRepo.existsById(101)).thenReturn(true);
 		try{

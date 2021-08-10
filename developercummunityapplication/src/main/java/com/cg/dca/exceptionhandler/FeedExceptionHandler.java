@@ -27,14 +27,14 @@ public class FeedExceptionHandler {
 	}
 	
 	@ExceptionHandler(FeedAlreadyFoundException.class)
-	public ResponseEntity<Object> handleFeed(FeedAlreadyFoundException ex) {
+	public ResponseEntity<?> handleFeed(FeedAlreadyFoundException ex) {
 
 		Map<String, Object> errorBody = new LinkedHashMap<>();
 		errorBody.put("error", " failed");
 		errorBody.put("timestamp", LocalDateTime.now());
 		errorBody.put("details", ex.getMessage());
 
-		return new ResponseEntity<Object>(errorBody, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(errorBody, HttpStatus.BAD_REQUEST);
 	}
 
 }
