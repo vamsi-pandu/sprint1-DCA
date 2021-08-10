@@ -39,7 +39,7 @@ class IFeedServiceImplTest {
 		feed.setTotalComments(0);
 		
 		when(repo.existsById(100)).thenReturn(true);
-		assertEquals(100, feed.getFeedId());
+		assertEquals(2, feed.getRelevance());
 		
 	}
 	
@@ -56,7 +56,7 @@ class IFeedServiceImplTest {
 		try{
 			Optional<Feed> e2=Optional.of(feed);
 		
-		when(repo.findById(100)).thenReturn(e2);
+		when(repo.findById(200)).thenReturn(e2);
 		when(repo.existsById(feed.getFeedId())).thenReturn(false);
 		   assertFalse(repo.existsById(feed.getFeedId()));
 		   
