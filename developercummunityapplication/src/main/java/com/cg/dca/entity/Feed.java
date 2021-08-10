@@ -55,6 +55,7 @@ public class Feed {
 	public Feed() {
 		super();
 	}
+	
 	public int getFeedId() {
 		return feedId;
 	}
