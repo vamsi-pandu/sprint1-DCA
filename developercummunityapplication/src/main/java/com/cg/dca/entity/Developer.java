@@ -70,8 +70,6 @@ public class Developer implements Serializable {
 	public Developer() {
 		super();
 	}
-	
-
 
 
 	public Developer(int devId, @NotEmpty(message = "Name Should not be empty") @Size(min = 3, max = 25) String name,
