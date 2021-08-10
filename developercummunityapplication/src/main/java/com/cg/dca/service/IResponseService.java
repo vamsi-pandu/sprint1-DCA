@@ -7,13 +7,13 @@ import com.cg.dca.entity.Response;
 
 public interface IResponseService {
 	
-	Optional<Response> addResponse(Response resp);
+	Response addResponse(Response resp);
 	
-	Optional<Response> editResponse(Response resp);
+	Response editResponse(Response resp);
 	
 	Optional<Response> removeResponse(int respId) ;
 	
-	Optional<Response> likeResponse(int respId);
+//	Optional<Response> likeResponse(int respId);
 	
 	List<Response> getResponseByFeed(int feedId) ;
 	

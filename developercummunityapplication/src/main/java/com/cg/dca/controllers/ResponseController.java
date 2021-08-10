@@ -1,9 +1,12 @@
 package com.cg.dca.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,5 +41,18 @@ public class ResponseController {
 		return new ResponseEntity<String>("Response with Id "+respId+" deleted successfully",HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("/feed/{feedId}")
+	public ResponseEntity<?> getResponseByFeed(@PathVariable("feedId") int feedId){
+		List<Response> listOfResponses = service.getResponseByFeed(feedId); 
+		return new ResponseEntity<Object>(listOfResponses,HttpStatus.OK);
+	}
+	
+	@GetMapping("/developer/{devId}")
+	public ResponseEntity<?> getResponseByDeveloper(@PathVariable("devId") int devId){
+		List<Response> listOfResponses = service.getResponseByDeveloper(devId);
+		return new ResponseEntity<Object>(listOfResponses,HttpStatus.OK);
+	}
+	
 
 }
