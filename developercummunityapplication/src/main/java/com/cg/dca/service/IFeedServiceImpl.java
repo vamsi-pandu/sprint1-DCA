@@ -19,6 +19,11 @@ public class IFeedServiceImpl implements IFeedService{
 	@Autowired
 	IFeedRepository feedRepo;
 	
+	public IFeedServiceImpl(IFeedRepository feedRepo) {
+		super();
+		this.feedRepo = feedRepo;
+	}
+
 	/*@Override
 	public Feed addFeed(Feed feed) {
 		if(feedRepo.existsById(feed.getFeedId())) 
