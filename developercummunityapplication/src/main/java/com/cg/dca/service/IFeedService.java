@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.dca.entity.Feed;
+import com.cg.dca.entity.Topic;
 
 public interface IFeedService {
 
@@ -21,7 +22,9 @@ public interface IFeedService {
 	
 	List<Feed> getFeedsByKeyword(String keyword);
 	
-	List<Feed> getFeedsByTopic(String topic);
+	
+
+	List<Feed> getFeedsByTopic(Topic topic);
 
 
 	

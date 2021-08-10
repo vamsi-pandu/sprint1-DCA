@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.dca.entity.Feed;
+import com.cg.dca.entity.Topic;
 import com.cg.dca.service.IFeedService;
 
 @RestController
@@ -54,7 +55,7 @@ public class FeedController {
 
 
 		@GetMapping("/topic/{topic}")
-		public ResponseEntity<?> getFeedByTopic(@PathVariable("topic") String topic){
+		public ResponseEntity<?> getFeedByTopic(@PathVariable("topic") Topic topic){
 			List<Feed> listOfTopics = (List<Feed>) service.getFeedsByTopic(topic);
 
 			return new ResponseEntity<Object>(listOfTopics,HttpStatus.OK);
