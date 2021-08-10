@@ -1,6 +1,7 @@
 package com.cg.dca.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
@@ -12,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -27,11 +31,13 @@ public class Response {
 	@Column(name = "answer")
 	private String answer;
 	
+	@UpdateTimestamp
 	@Column(name = "resp_date")
-	private LocalDate respDate;
+	private LocalDateTime respDate;
 	
 	@Column(name = "resp_time")
-	private LocalTime respTime;
+	@CreationTimestamp
+	private LocalDateTime respTime;
 	
 	@Column(name = "accuracy")
 	private int accuracy;	// Likes on Response increase accuracy
@@ -45,7 +51,7 @@ public class Response {
 	@JoinColumn(name ="fk_feed_id")
 	private Feed feed;
 	
-	public Response(int respId, String answer, LocalDate respDate, LocalTime respTime, int accuracy, Developer developer,
+	public Response(int respId, String answer, LocalDateTime respDate, LocalDateTime respTime, int accuracy, Developer developer,
 			Feed feed) {
 		super();
 		this.respId = respId;
@@ -71,16 +77,17 @@ public class Response {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public LocalDate getRespDate() {
+	
+	public LocalDateTime getRespDate() {
 		return respDate;
 	}
-	public void setRespDate(LocalDate respDate) {
+	public void setRespDate(LocalDateTime respDate) {
 		this.respDate = respDate;
 	}
-	public LocalTime getRespTime() {
+	public LocalDateTime getRespTime() {
 		return respTime;
 	}
-	public void setRespTime(LocalTime respTime) {
+	public void setRespTime(LocalDateTime respTime) {
 		this.respTime = respTime;
 	}
 	public int getAccuracy() {
