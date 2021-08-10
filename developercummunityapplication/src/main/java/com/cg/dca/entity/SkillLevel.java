@@ -2,7 +2,7 @@ package com.cg.dca.entity;
 
 public enum SkillLevel {
 	
-	BEGGINNER,
+	BEGINNER,
 	INTERMEDIATE,
 	EXPERT;
 
