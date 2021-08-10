@@ -16,6 +16,13 @@ public class IResponseServiceImpl implements IResponseService {
 	//using the methods of crud repository
 	@Autowired
 	IResponseRepository responserepo;
+	
+	
+
+	public IResponseServiceImpl(IResponseRepository responseRepo) {
+		super();
+		this.responserepo = responseRepo;
+	}
 
 	@Override
 	public Response addResponse(Response resp)  {
