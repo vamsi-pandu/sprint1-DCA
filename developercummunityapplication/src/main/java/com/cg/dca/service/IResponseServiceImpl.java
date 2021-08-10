@@ -18,23 +18,22 @@ public class IResponseServiceImpl implements IResponseService {
 	IResponseRepository responserepo;
 
 	@Override
-	public Optional<Response> addResponse(Response resp)  {
-		Optional<Response> response = responserepo.findById(resp.getRespId());
-		if(response.isPresent()) {
+	public Response addResponse(Response resp)  {
+		if(responserepo.existsById(resp.getRespId())) {
 			throw new ResponseAlreadyExistsException("Response with response id: " +resp.getRespId() + " already exists:RESPONSE CAN'T BE ADDED");
-				}
-		responserepo.save(resp);
-		return response;
+		}
+		return responserepo.save(resp);
+		
 	}
 
 	@Override
-	public Optional<Response> editResponse(Response resp){
-		Optional<Response> response = responserepo.findById(resp.getRespId());
-		if(!(response.isPresent())) {
+	public Response editResponse(Response resp){
+		if(responserepo.existsById(resp.getRespId())) {
+			return responserepo.save(resp);
+		}
+		else {
 			throw new UnknownResponseException("Response with id: " + resp.getRespId() + " not present:NO SUCH RESPONSE TO EDIT");
 		}
-		responserepo.save(resp);
-		return response;
 	}
 
 	@Override
@@ -47,11 +46,7 @@ public class IResponseServiceImpl implements IResponseService {
 		return response;
 	}
 
-	@Override
-	public Optional<Response> likeResponse(int respId) {
-		
-		return null;
-	}
+
 
 	@Override
 	public List<Response> getResponseByFeed(int feedId)  {
