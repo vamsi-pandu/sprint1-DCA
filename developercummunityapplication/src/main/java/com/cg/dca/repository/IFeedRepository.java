@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cg.dca.entity.Feed;
+import com.cg.dca.entity.Topic;
 
 @Repository
 public interface IFeedRepository extends JpaRepository<Feed, Integer>{
@@ -27,7 +28,8 @@ public interface IFeedRepository extends JpaRepository<Feed, Integer>{
 	@Query("SELECT b FROM Feed b WHERE b.query like %:keyword%")
 	List<Feed> findByKeyword(@Param("keyword") String keyword);
 	
-	List<Feed> findAllByTopic(String topic);
+	
+	List<Feed> findAllByTopic(Topic topic);
 
 	
 }

@@ -89,7 +89,7 @@ public class IFeedServiceImpl implements IFeedService{
 	}
 
 	@Override
-	public List<Feed> getFeedsByTopic(String topic) {
+	public List<Feed> getFeedsByTopic(Topic topic) {
 		List<Feed> listOfFeedByTopic = feedRepo.findAllByTopic(topic);
 		if(listOfFeedByTopic.isEmpty())
 			throw new UnknownFeedException("No feed found with topic "+topic);

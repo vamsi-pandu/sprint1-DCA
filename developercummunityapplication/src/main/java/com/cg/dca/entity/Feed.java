@@ -37,7 +37,7 @@ public class Feed {
 	@Column(name="feed_updation_time")
     private LocalDateTime updateDateTime;
 	
-	private String topic;	// Programming/Java/Testing
+	private Topic topic;	// Programming/Java/Testing
 	private int relevance;	// Likes on Feed increase relevance
 	
 	@ManyToOne
@@ -69,12 +69,15 @@ public class Feed {
 		this.query = query;
 	}
 	
-	public String getTopic() {
+	
+	public Topic getTopic() {
 		return topic;
 	}
-	public void setTopic(String topic) {
+
+	public void setTopic(Topic topic) {
 		this.topic = topic;
 	}
+
 	public int getRelevance() {
 		return relevance;
 	}
