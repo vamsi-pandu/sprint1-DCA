@@ -21,7 +21,7 @@ import com.cg.dca.entity.Feed;
 import com.cg.dca.service.IFeedService;
 
 @RestController
-@RequestMapping("feeds")
+@RequestMapping("feed")
 public class FeedController {
 	
 	@Autowired
@@ -30,7 +30,7 @@ public class FeedController {
 	
 	
 		@PostMapping("save")
-		public ResponseEntity<String> saveFeed(@Valid  @RequestBody Feed feed){
+		public ResponseEntity<?> saveFeed(@Valid  @RequestBody Feed feed){
 			service.addFeed(feed);
 			return new ResponseEntity<String>("Feed Added Successfully",HttpStatus.OK);
 		}
@@ -38,7 +38,7 @@ public class FeedController {
 
 
 		@GetMapping("{feedId}")
-		public ResponseEntity<Feed> getFeed(@PathVariable("feedId") int feedId){
+		public ResponseEntity<?> getFeed(@PathVariable("feedId") int feedId){
 			Optional<Feed> feed = service.getFeed(feedId);
 			return new ResponseEntity<Feed>(feed.get(),HttpStatus.OK);
 		}
@@ -75,7 +75,7 @@ public class FeedController {
 
 
 		@DeleteMapping("{feedId}")
-		public ResponseEntity<String> deleteFeed(@PathVariable("feedId") int feedId){
+		public ResponseEntity<?> deleteFeed(@PathVariable("feedId") int feedId){
 			service.removeFeed(feedId);
 			return new ResponseEntity<String>("Feed Deleted Succesfully",HttpStatus.OK);
 
@@ -83,7 +83,7 @@ public class FeedController {
 
 
 		@PutMapping("update")
-		public ResponseEntity<String> updateFeed(@RequestBody Feed feed){
+		public ResponseEntity<?> updateFeed(@RequestBody Feed feed){
 			service.editFeed(feed);
 			return new ResponseEntity<String>("Feed Updated Succesfully",HttpStatus.OK);
 

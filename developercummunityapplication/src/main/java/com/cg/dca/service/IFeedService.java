@@ -7,8 +7,8 @@ import com.cg.dca.entity.Feed;
 
 public interface IFeedService {
 
-	Feed addFeed(Feed feed);
-	
+    Optional<Feed> addFeed(Feed feed);
+		
 	Feed editFeed(Feed feed);
 	
 	Feed likeFeed(int feedId);
@@ -22,4 +22,7 @@ public interface IFeedService {
 	List<Feed> getFeedsByKeyword(String keyword);
 	
 	List<Feed> getFeedsByTopic(String topic);
+
+
+	
 }

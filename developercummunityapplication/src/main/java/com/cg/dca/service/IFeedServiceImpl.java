@@ -19,12 +19,23 @@ public class IFeedServiceImpl implements IFeedService{
 	@Autowired
 	IFeedRepository feedRepo;
 	
-	@Override
+	/*@Override
 	public Feed addFeed(Feed feed) {
 		if(feedRepo.existsById(feed.getFeedId())) 
 			throw new FeedAlreadyFoundException("Feed with "+feed.getFeedId()+" already exists");
 		return feedRepo.save(feed);
+	}*/
+	@Override
+	public Optional<Feed> addFeed(Feed feed) {
+	Optional<Feed> existing = feedRepo.findById(feed.getFeedId());
+
+	if(!existing.isPresent()) {
+		feedRepo.save(feed);
+		return existing;
 	}
+	throw new UnknownFeedException("Feed With Id "+ feed.getFeedId() +" exists already");
+
+}
 
 	@Override
 	public Feed editFeed(Feed feed) {

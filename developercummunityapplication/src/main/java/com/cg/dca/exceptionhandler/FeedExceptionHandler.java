@@ -18,23 +18,23 @@ public class FeedExceptionHandler {
 	@ExceptionHandler(UnknownFeedException.class)
 	public ResponseEntity<?> handleUnknownFeed(UnknownFeedException ex) {
 
-	/*	Map<String, Object> errorBody = new LinkedHashMap<>();
+	    Map<String, Object> errorBody = new LinkedHashMap<>();
 		errorBody.put("error", " failed");
 		errorBody.put("timestamp", LocalDateTime.now());
 		errorBody.put("details", ex.getMessage());
-*/
-		return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<Object>(errorBody, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(FeedAlreadyFoundException.class)
-	public ResponseEntity<?> handleFeed(FeedAlreadyFoundException ex) {
+	public ResponseEntity<Object> handleFeed(FeedAlreadyFoundException ex) {
 
-	/*	Map<String, Object> errorBody = new LinkedHashMap<>();
+		Map<String, Object> errorBody = new LinkedHashMap<>();
 		errorBody.put("error", " failed");
 		errorBody.put("timestamp", LocalDateTime.now());
 		errorBody.put("details", ex.getMessage());
-*/
-		return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<Object>(errorBody, HttpStatus.NOT_FOUND);
 	}
 
 }

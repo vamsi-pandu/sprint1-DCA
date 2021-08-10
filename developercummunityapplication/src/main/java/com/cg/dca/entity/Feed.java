@@ -1,44 +1,48 @@
 package com.cg.dca.entity;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "feed")
+@Table(name = "Feed")
 public class Feed {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="feed_id")
 	private int feedId;
+	
 	private String query;
 	
-	@Column(name = "feed_date")
-	private LocalDate feedDate;
-	
+
 	@Column(name = "feed_time")
-	private LocalTime feedTime;
+	@CreationTimestamp
+	private LocalDateTime feedTime;
+	
+	@UpdateTimestamp
+	@Column(name="feed_updation_time")
+    private LocalDateTime updateDateTime;
 	
 	private String topic;	// Programming/Java/Testing
 	private int relevance;	// Likes on Feed increase relevance
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_developer_id")
-	@JsonBackReference // is used to mark child objects.
+	@JsonBackReference    // is used to mark child objects.
 	private Developer developer;
 	
 	@OneToMany(mappedBy="feed",cascade=CascadeType.ALL)
@@ -47,23 +51,10 @@ public class Feed {
 	
 	private int totalComments;
 	
+	
 	public Feed() {
 		super();
 	}
-	public Feed(int feedId, String query, LocalDate feedDate, LocalTime feedTime, String topic, int relevance,
-			Developer developer, List<Response> responses, int totalComments) {
-		super();
-		this.feedId = feedId;
-		this.query = query;
-		this.feedDate = feedDate;
-		this.feedTime = feedTime;
-		this.topic = topic;
-		this.relevance = relevance;
-		this.developer = developer;
-		this.responses = responses;
-		this.totalComments = totalComments;
-	}
-
 	public int getFeedId() {
 		return feedId;
 	}
@@ -76,18 +67,7 @@ public class Feed {
 	public void setQuery(String query) {
 		this.query = query;
 	}
-	public LocalDate getFeedDate() {
-		return feedDate;
-	}
-	public void setFeedDate(LocalDate feedDate) {
-		this.feedDate = feedDate;
-	}
-	public LocalTime getFeedTime() {
-		return feedTime;
-	}
-	public void setFeedTime(LocalTime feedTime) {
-		this.feedTime = feedTime;
-	}
+	
 	public String getTopic() {
 		return topic;
 	}
@@ -100,12 +80,26 @@ public class Feed {
 	public void setRelevance(int relevance) {
 		this.relevance = relevance;
 	}
+	
+	public LocalDateTime getFeedTime() {
+		return feedTime;
+	}
+	public void setFeedTime(LocalDateTime feedTime) {
+		this.feedTime = feedTime;
+	}
+	public LocalDateTime getUpdateDateTime() {
+		return updateDateTime;
+	}
+	public void setUpdateDateTime(LocalDateTime updateDateTime) {
+		this.updateDateTime = updateDateTime;
+	}
+	public void setDeveloper(Developer developer) {
+		this.developer = developer;
+	}
 	public Developer getDeveloper() {
 		return developer;
 	}
-	public void setDev(Developer developer) {
-		this.developer = developer;
-	}
+	
 	public List<Response> getResponses() {
 		return responses;
 	}
@@ -118,5 +112,12 @@ public class Feed {
 	public void setTotalComments(int totalComments) {
 		this.totalComments = totalComments;
 	}
+	@Override
+	public String toString() {
+		return "Feed [feedId=" + feedId + ", query=" + query + ", feedTime=" + feedTime + ", updateDateTime="
+				+ updateDateTime + ", topic=" + topic + ", relevance=" + relevance + ", developer=" + developer
+				+ ", responses=" + responses + ", totalComments=" + totalComments + "]";
+	}
+	
 	
 }

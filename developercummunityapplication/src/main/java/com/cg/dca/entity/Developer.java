@@ -17,6 +17,8 @@ import javax.persistence.Table;
 @Table(name="Developer")
 public class Developer implements Serializable {
 
+	
+	//private static final long serialVersionUID = 1L;
 	@Column(name="dev_id")
 	@Id
 	private	int devId;
