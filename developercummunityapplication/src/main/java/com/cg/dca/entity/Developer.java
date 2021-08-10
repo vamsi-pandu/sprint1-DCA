@@ -12,6 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Developer")
@@ -22,16 +27,30 @@ public class Developer implements Serializable {
 	@Column(name="dev_id")
 	@Id
 	private	int devId;
+	
+	@NotEmpty(message = "Name Should not be empty")
+	@Size(min=3, max=25)
 	@Column(name="name")
 	private String name;
+	
+	@NotEmpty(message = "Email must be entered")
+	@Email(message = "Email is Not Valid")
 	@Column(name="email")
 	private String email;
+	
+	
 	@Column(name="skill_level")
-	private String skillLevel;
+	private SkillLevel skillLevel;
+	
+	
 	@Column(name="member_since")
 	private LocalDate memberSince;
+	
+	
 	@Column(name="total_feeds")
 	private int  totalFeeds;
+	
+	
 	@Column(name="reputation")
 	private int  reputations;
 
@@ -52,8 +71,13 @@ public class Developer implements Serializable {
 		super();
 	}
 	
-	public Developer(int devId, String name, String email, String skillLevel, LocalDate memberSince, int totalFeeds,
-			int reputations, User user, List<Feed> feedList, Boolean isVerified, Boolean isBlocked) {
+
+
+
+	public Developer(int devId, @NotEmpty(message = "Name Should not be empty") @Size(min = 3, max = 25) String name,
+			@NotEmpty(message = "Email must be entered") @Email(message = "Email is Not Valid") String email,
+			SkillLevel skillLevel, LocalDate memberSince, int totalFeeds, int reputations, User user,
+			List<Feed> feedList, Boolean isVerified, Boolean isBlocked) {
 		super();
 		this.devId = devId;
 		this.name = name;
@@ -67,6 +91,8 @@ public class Developer implements Serializable {
 		this.isVerified = isVerified;
 		this.isBlocked = isBlocked;
 	}
+
+
 
 
 	public int getDevId() {
@@ -87,12 +113,21 @@ public class Developer implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getSkillLevel() {
+	
+	public SkillLevel getSkillLevel() {
 		return skillLevel;
 	}
-	public void setSkillLevel(String skillLevel) {
+
+
+
+
+	public void setSkillLevel(SkillLevel skillLevel) {
 		this.skillLevel = skillLevel;
 	}
+
+
+
+
 	public LocalDate getMemberSince() {
 		return memberSince;
 	}
