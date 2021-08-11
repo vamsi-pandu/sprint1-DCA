@@ -9,11 +9,13 @@ public interface IUserService {
 	
 
 	
-	User logout(User user);
+	Optional<User> addUser(User user);
 	
     List<User> getAllUsers();
 	
 	Optional<User>  getUserById(String UserId);
 	
 	String checkLogin(User userCredentials);
+
+	
 }

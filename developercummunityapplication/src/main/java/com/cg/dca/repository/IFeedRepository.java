@@ -17,8 +17,6 @@ public interface IFeedRepository extends JpaRepository<Feed, Integer>{
 	
 	Feed updateFeed(Feed feed);
 	
-	Feed likeFeed(int feedId) throws UnknownFeedException;
-	
 	Feed fetchFeed(int feedId) throws UnknownFeedException;
 	
 	Optional<Feed> deleteFeed(Optional<Feed> feed) throws UnknownFeedException;    */

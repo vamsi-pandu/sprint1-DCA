@@ -35,11 +35,10 @@ class IFeedServiceImplTest {
 		feed.setQuery("What is json");
 		feed.setFeedTime(LocalDateTime.now());
 		feed.setTopic(Topic.JAVA);
-		feed.setRelevance(2);
-		feed.setTotalComments(0);
+		feed.setTotalComments(2);
 		
 		when(repo.existsById(100)).thenReturn(true);
-		assertEquals(100, feed.getFeedId());
+		assertEquals(2, feed.getTotalComments());
 		
 	}
 	
@@ -50,13 +49,13 @@ class IFeedServiceImplTest {
 		feed.setQuery("What is json");
 		feed.setFeedTime(LocalDateTime.now());
 		feed.setTopic(Topic.JAVA);
-		feed.setRelevance(2);
+		
 		feed.setTotalComments(0);
 		
 		try{
 			Optional<Feed> e2=Optional.of(feed);
 		
-		when(repo.findById(100)).thenReturn(e2);
+		when(repo.findById(200)).thenReturn(e2);
 		when(repo.existsById(feed.getFeedId())).thenReturn(false);
 		   assertFalse(repo.existsById(feed.getFeedId()));
 		   
@@ -81,7 +80,6 @@ class IFeedServiceImplTest {
 		feed.setQuery("What is json");
 		feed.setFeedTime(LocalDateTime.now());
 		feed.setTopic(Topic.JAVA);
-		feed.setRelevance(2);
 		feed.setTotalComments(0);
 		
 		Developer developer = new Developer();

@@ -12,8 +12,6 @@ public interface IFeedService {
 		
 	Feed editFeed(Feed feed);
 	
-	Feed likeFeed(int feedId);
-	
 	Optional<Feed> getFeed(int feedId);
 	
 	Optional<Feed> removeFeed(int feedId);
@@ -22,10 +20,6 @@ public interface IFeedService {
 	
 	List<Feed> getFeedsByKeyword(String keyword);
 	
-	
-
 	List<Feed> getFeedsByTopic(Topic topic);
 
-
-	
 }

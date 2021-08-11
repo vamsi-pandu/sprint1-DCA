@@ -9,8 +9,6 @@ import com.cg.dca.entity.User;
 public interface IUserRepository extends JpaRepository<User, String> {
 
 	User findByUserIdAndPassword(String userId, String password);
-	
-/*	
-	
-	User logout(User user);  */
+	void save(int userid);
+
 }
