@@ -6,11 +6,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -22,20 +25,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Feed {
 	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="feed_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="feed_id" ,nullable = false)
 	private int feedId;
 	
+	@NotBlank(message = "Query is mandatory")
 	private String query;
 	
 
 	@CreationTimestamp
-	@Column(name = "feed_time")
+	@Column(name = "feed_time",updatable=false)
 	private LocalDateTime feedTime;
 	
 	@UpdateTimestamp
 	@Column(name="feed_updation_time")
     private LocalDateTime updateDateTime;
+	
 	
 	private Topic topic;// Programming/Java/Testing
 	

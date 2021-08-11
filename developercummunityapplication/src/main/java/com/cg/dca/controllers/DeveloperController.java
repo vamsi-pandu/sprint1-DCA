@@ -24,11 +24,6 @@ import com.cg.dca.exception.DeveloperAlreadyExistsException;
 import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.service.IDeveloperServiceImpl;
 
-
-
-
-
-
 @RestController
 @RequestMapping("/developer")
 public class DeveloperController {

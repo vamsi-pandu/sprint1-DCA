@@ -13,8 +13,6 @@ public interface IResponseService {
 	
 	Optional<Response> removeResponse(int respId) ;
 	
-//	Optional<Response> likeResponse(int respId);
-	
 	List<Response> getResponseByFeed(int feedId) ;
 	
 	List<Response> getResponseByDeveloper(int devId);

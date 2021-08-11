@@ -27,7 +27,7 @@ public class UserController {
 	IUserService service;
 
 	
-	    @PostMapping(value= "/adduser")
+	    @PostMapping("/adduser")
      	public ResponseEntity<?> addUser(@Valid @RequestBody User user) {       
 		service.addUser(user);
 		return new  ResponseEntity<String>("User added successfully",HttpStatus.OK);

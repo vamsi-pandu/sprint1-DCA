@@ -20,6 +20,7 @@ import com.cg.dca.service.IResponseService;
 @RestController
 @RequestMapping("developerCommunity/response")
 public class ResponseController {
+	
 	@Autowired
 	IResponseService service;
 	

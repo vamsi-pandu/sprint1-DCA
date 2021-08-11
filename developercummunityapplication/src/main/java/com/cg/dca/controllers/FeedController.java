@@ -62,8 +62,6 @@ public class FeedController {
 		}
 
 
-
-
 		
 		@GetMapping("/keyword/{keyword}")
 		public ResponseEntity<?> getFeedByKeyword(@PathVariable("keyword") String keyword){
@@ -71,7 +69,6 @@ public class FeedController {
 
 			return new ResponseEntity<Object>(listOfKeyword,HttpStatus.OK);
 		}
-
 
 
 
@@ -91,6 +88,6 @@ public class FeedController {
 		}
 
 
-	}
+}
 
 

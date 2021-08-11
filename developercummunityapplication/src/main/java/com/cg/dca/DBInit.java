@@ -1,7 +1,6 @@
 package com.cg.dca;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +24,11 @@ public class DBInit implements CommandLineRunner{
 	@Autowired
 	IUserRepository userRepo;
 	@Autowired
-	IDeveloperRepository devRepo;
+	IDeveloperRepository developerRepo;
 	@Autowired
 	IFeedRepository feedRepo;
 	@Autowired
-	IResponseRepository resRepo;
+	IResponseRepository responseRepo;
 	
 	Logger logger = LoggerFactory.getLogger(DBInit.class);
 	
@@ -46,45 +45,44 @@ public class DBInit implements CommandLineRunner{
 		userRepo.save(user);
 		
 		/*-----------------Developer entity----------------*/
-		Developer dev = new Developer();
+		Developer developer = new Developer();
 		
-		dev.setDevId(100);
-		dev.setEmail("raju@gmail.com");
+		developer.setDevId(100);
+		developer.setEmail("raju@gmail.com");
 		//dev.setFeedList(null);
-		dev.setIsBlocked(false);
-		dev.setIsVerified(true);
-		dev.setMemberSince(LocalDate.of(2020, 9, 9));
-		dev.setName("Raju");
-		dev.setReputations(5);
-		dev.setSkillLevel(SkillLevel.INTERMEDIATE);
+		developer.setIsBlocked(false);
+		developer.setIsVerified(true);
+		developer.setMemberSince(LocalDate.of(2020, 9, 9));
+		developer.setName("Raju");
+		developer.setReputations(5);
+		developer.setSkillLevel(SkillLevel.INTERMEDIATE);
 		//dev.setTotalFeeds(1);
-		dev.setUser(user);
-		devRepo.save(dev);
+		developer.setUser(user);
+		developerRepo.save(developer);
 		
 		/*-----------------Feed entity----------------------*/
 		Feed feed = new Feed();
 		
-		feed.setFeedId(100);
+		//feed.setFeedId(10);
 		feed.setQuery("What is Json");
 		//feed.setFeedTime(LocalDateTime.now());
 		//feed.setUpdateDateTime(updateDateTime);
 		//feed.setResponses(null);
 		feed.setTopic(Topic.JAVA);
-		feed.setDeveloper(dev);
+		feed.setDeveloper(developer);
 		feed.setTotalComments(2);
 		feedRepo.save(feed);
 		
 		/*-----------------Response entity--------------------*/
-		Response res = new Response();
+		Response response = new Response();
 		
-		res.setRespId(12);
+		response.setRespId(12);
 		//res.setResponseTime(LocalDateTime.now());
 		//res.setUpdatedResponseDateTime(updatedResponseDateTime);
-		res.setDeveloper(dev);
-		res.setFeed(feed);
-		res.setAnswer("JSON is javascript object notation");
-		res.setAccuracy(5);
-		resRepo.save(res);
+		response.setDeveloper(developer);
+		response.setFeed(feed);
+		response.setAnswer("JSON is javascript object notation");
+		responseRepo.save(response);
 		
 		logger.info("all the entities are initialized");
 	}

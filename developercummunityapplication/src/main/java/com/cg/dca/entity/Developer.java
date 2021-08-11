@@ -24,8 +24,8 @@ public class Developer implements Serializable {
 
 	
 	//private static final long serialVersionUID = 1L;
-	@Column(name="dev_id")
 	@Id
+	@Column(name="dev_id")
 	private	int devId;
 	
 	@NotEmpty(message = "Name Should not be empty")
@@ -64,30 +64,12 @@ public class Developer implements Serializable {
 
 	@Column(name="is_verified")
 	private Boolean isVerified;
+	
 	@Column(name="is_blocked")
 	private Boolean isBlocked;
 	
 	public Developer() {
 		super();
-	}
-
-
-	public Developer(int devId, @NotEmpty(message = "Name Should not be empty") @Size(min = 3, max = 25) String name,
-			@NotEmpty(message = "Email must be entered") @Email(message = "Email is Not Valid") String email,
-			SkillLevel skillLevel, LocalDate memberSince, int totalFeeds, int reputations, User user,
-			List<Feed> feedList, Boolean isVerified, Boolean isBlocked) {
-		super();
-		this.devId = devId;
-		this.name = name;
-		this.email = email;
-		this.skillLevel = skillLevel;
-		this.memberSince = memberSince;
-		this.totalFeeds = totalFeeds;
-		this.reputations = reputations;
-		this.user = user;
-		this.feedList = feedList;
-		this.isVerified = isVerified;
-		this.isBlocked = isBlocked;
 	}
 
 	public int getDevId() {
@@ -113,15 +95,9 @@ public class Developer implements Serializable {
 		return skillLevel;
 	}
 
-
-
-
 	public void setSkillLevel(SkillLevel skillLevel) {
 		this.skillLevel = skillLevel;
 	}
-
-
-
 
 	public LocalDate getMemberSince() {
 		return memberSince;
@@ -166,12 +142,6 @@ public class Developer implements Serializable {
 	public void setIsBlocked(Boolean isBlocked) {
 		this.isBlocked = isBlocked;
 	}
-	@Override
-	public String toString() {
-		return "Developer [devId=" + devId + ", name=" + name + ", email=" + email + ", skillLevel=" + skillLevel
-				+ ", memberSince=" + memberSince + ", totalFeeds=" + totalFeeds + ", reputations=" + reputations
-				+ ", user=" + user + ", feedList=" + feedList + ", isVerified=" + isVerified + ", isBlocked="
-				+ isBlocked + "]";
-	}
+	
 
 }

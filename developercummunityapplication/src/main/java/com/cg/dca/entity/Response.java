@@ -1,9 +1,6 @@
 package com.cg.dca.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +22,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Response {
 	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="response_id")
 	private int respId;
 	
 	@Column(name = "answer")
@@ -39,10 +37,6 @@ public class Response {
 	@Column(name="response_updation_time")
     private LocalDateTime updatedResponseDateTime;
 	
-	
-	@Column(name = "accuracy")
-	private int accuracy;	// Likes on Response increase accuracy
-	
 	@OneToOne
 	@JoinColumn(name ="fk_dev_id")
 	@JsonBackReference
@@ -50,7 +44,6 @@ public class Response {
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_feed_id")
-	
 	private Feed feed;
 	
 	
@@ -70,7 +63,6 @@ public class Response {
 		this.answer = answer;
 	}
 	
-	
 	public LocalDateTime getResponseTime() {
 		return responseTime;
 	}
@@ -83,12 +75,7 @@ public class Response {
 	public void setUpdatedResponseDateTime(LocalDateTime updatedResponseDateTime) {
 		this.updatedResponseDateTime = updatedResponseDateTime;
 	}
-	public int getAccuracy() {
-		return accuracy;
-	}
-	public void setAccuracy(int accuracy) {
-		this.accuracy = accuracy;
-	}
+	
 	public Developer getDeveloper() {
 		return developer;
 	}
