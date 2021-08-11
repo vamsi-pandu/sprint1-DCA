@@ -2,10 +2,10 @@ package com.dca;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -14,12 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.cg.dca.entity.Developer;
-import com.cg.dca.entity.Response;
-import com.cg.dca.entity.SkillLevel;
-import com.cg.dca.entity.User;
-import com.cg.dca.exception.DeveloperAlreadyExistsException;
-import com.cg.dca.exception.ResponseAlreadyExistsException;
-import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.repository.IDeveloperRepository;
 import com.cg.dca.service.IDeveloperService;
 import com.cg.dca.service.IDeveloperServiceImpl;
@@ -37,9 +31,6 @@ class IDeveloperServiceImplTest {
 		int actualValue = developerRepo.findAll().size();
 		assertEquals(myValue,actualValue);
 	}
-	
-	
-	
 	
 	@Test
 	public void testGetDeveloper() {
