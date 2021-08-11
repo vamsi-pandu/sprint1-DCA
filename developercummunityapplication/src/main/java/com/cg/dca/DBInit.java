@@ -76,7 +76,7 @@ public class DBInit implements CommandLineRunner{
 		/*-----------------Response entity--------------------*/
 		Response response = new Response();
 		
-		response.setRespId(12);
+		//response.setRespId(12);
 		//res.setResponseTime(LocalDateTime.now());
 		//res.setUpdatedResponseDateTime(updatedResponseDateTime);
 		response.setDeveloper(developer);
