@@ -1,6 +1,7 @@
 package com.cg.dca.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
@@ -13,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -21,17 +25,20 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Response {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int respId;
 	
 	@Column(name = "answer")
 	private String answer;
 	
-	@Column(name = "resp_date")
-	private LocalDate respDate;
+	@Column(name = "response_time")
+	@CreationTimestamp
+	private LocalDateTime responseTime;
 	
-	@Column(name = "resp_time")
-	private LocalTime respTime;
+	@UpdateTimestamp
+	@Column(name="response_updation_time")
+    private LocalDateTime updatedResponseDateTime;
+	
 	
 	@Column(name = "accuracy")
 	private int accuracy;	// Likes on Response increase accuracy
@@ -43,19 +50,10 @@ public class Response {
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_feed_id")
+	
 	private Feed feed;
 	
-	public Response(int respId, String answer, LocalDate respDate, LocalTime respTime, int accuracy, Developer developer,
-			Feed feed) {
-		super();
-		this.respId = respId;
-		this.answer = answer;
-		this.respDate = respDate;
-		this.respTime = respTime;
-		this.accuracy = accuracy;
-		this.developer = developer;
-		this.feed = feed;
-	}
+	
 	public Response() {
 		super();
 	} 
@@ -71,17 +69,19 @@ public class Response {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public LocalDate getRespDate() {
-		return respDate;
+	
+	
+	public LocalDateTime getResponseTime() {
+		return responseTime;
 	}
-	public void setRespDate(LocalDate respDate) {
-		this.respDate = respDate;
+	public void setResponseTime(LocalDateTime responseTime) {
+		this.responseTime = responseTime;
 	}
-	public LocalTime getRespTime() {
-		return respTime;
+	public LocalDateTime getUpdatedResponseDateTime() {
+		return updatedResponseDateTime;
 	}
-	public void setRespTime(LocalTime respTime) {
-		this.respTime = respTime;
+	public void setUpdatedResponseDateTime(LocalDateTime updatedResponseDateTime) {
+		this.updatedResponseDateTime = updatedResponseDateTime;
 	}
 	public int getAccuracy() {
 		return accuracy;
@@ -101,11 +101,5 @@ public class Response {
 	public void setFeed(Feed feed) {
 		this.feed = feed;
 	}
-	@Override
-	public String toString() {
-		return "Response [respId=" + respId + ", answer=" + answer + ", respDate=" + respDate + ", respTime=" + respTime
-				+ ", developer=" + developer + ", feed=" + feed + "]";
-	}
-	
 
 }

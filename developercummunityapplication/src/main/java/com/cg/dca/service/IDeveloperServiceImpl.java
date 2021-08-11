@@ -17,8 +17,14 @@ import com.cg.dca.repository.IDeveloperRepository;
 
 @Service
 public class IDeveloperServiceImpl implements IDeveloperService   {
+	
 	@Autowired
 	IDeveloperRepository devRepo;
+
+	public IDeveloperServiceImpl(IDeveloperRepository developerRepo) {
+		super();
+		this.devRepo=developerRepo;
+	}
 
 	@Override
 	public Optional<Developer> addDeveloper(Developer dev) throws DeveloperAlreadyExistsException {
