@@ -32,11 +32,11 @@ public class IFeedServiceImpl implements IFeedService{
 	}*/
 	@Override
 	public Optional<Feed> addFeed(Feed feed) {
-	Optional<Feed> existing = feedRepo.findById(feed.getFeedId());
+	Optional<Feed> newFeed = feedRepo.findById(feed.getFeedId());
 
-	if(!existing.isPresent()) {
+	if(!newFeed.isPresent()) {
 		feedRepo.save(feed);
-		return existing;
+		return newFeed;
 	}
 	throw new UnknownFeedException("Feed With Id "+ feed.getFeedId() +" exists already");
 
@@ -50,12 +50,7 @@ public class IFeedServiceImpl implements IFeedService{
 			throw new UnknownFeedException("Feed with "+feed.getFeedId()+" does not exists");
 	}
 
-	@Override
-	public Feed likeFeed(int feedId) {
-		
-		return null;
-	}
-
+	
 	@Override
 	public Optional<Feed> getFeed(int feedId) {
 		Optional<Feed> feed = feedRepo.findById(feedId);

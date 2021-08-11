@@ -16,8 +16,8 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	
 	Developer updateDeveloper(Developer dev);
 	
-	*/
-	// Developer statusUpdate(Developer dev);
+	
+	Developer statusUpdate(Developer dev);*/
 
 
 	Optional<Developer> findById(int devId);

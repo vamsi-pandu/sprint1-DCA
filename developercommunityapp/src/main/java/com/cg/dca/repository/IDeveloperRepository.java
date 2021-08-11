@@ -1,7 +1,7 @@
+
 package com.cg.dca.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,13 +15,13 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	
 	Developer updateDeveloper(Developer dev);
 	
+	
+	Developer statusUpdate(Developer dev);
+
+	
+	Developer fetchDeveloper(int devId) throws UnknownDeveloperException;
+	
+	
+	List<Developer> fetchAllDevelopers();
 	*/
-	// Developer statusUpdate(Developer dev);
-
-
-	Optional<Developer> findById(int devId);
-
-	
-	List<Developer> findAll();
-	
 }

@@ -29,16 +29,16 @@ public class Feed {
 	private String query;
 	
 
-	@Column(name = "feed_time")
 	@CreationTimestamp
+	@Column(name = "feed_time")
 	private LocalDateTime feedTime;
 	
 	@UpdateTimestamp
 	@Column(name="feed_updation_time")
     private LocalDateTime updateDateTime;
 	
-	private Topic topic;	// Programming/Java/Testing
-	private int relevance;	// Likes on Feed increase relevance
+	private Topic topic;// Programming/Java/Testing
+	
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_developer_id")
@@ -69,7 +69,6 @@ public class Feed {
 		this.query = query;
 	}
 	
-	
 	public Topic getTopic() {
 		return topic;
 	}
@@ -78,13 +77,6 @@ public class Feed {
 		this.topic = topic;
 	}
 
-	public int getRelevance() {
-		return relevance;
-	}
-	public void setRelevance(int relevance) {
-		this.relevance = relevance;
-	}
-	
 	public LocalDateTime getFeedTime() {
 		return feedTime;
 	}
@@ -116,12 +108,7 @@ public class Feed {
 	public void setTotalComments(int totalComments) {
 		this.totalComments = totalComments;
 	}
-	@Override
-	public String toString() {
-		return "Feed [feedId=" + feedId + ", query=" + query + ", feedTime=" + feedTime + ", updateDateTime="
-				+ updateDateTime + ", topic=" + topic + ", relevance=" + relevance + ", developer=" + developer
-				+ ", responses=" + responses + ", totalComments=" + totalComments + "]";
-	}
+	
 	
 	
 }

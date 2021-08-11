@@ -25,19 +25,20 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Response {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int respId;
 	
 	@Column(name = "answer")
 	private String answer;
 	
-	@UpdateTimestamp
-	@Column(name = "resp_date")
-	private LocalDateTime respDate;
-	
-	@Column(name = "resp_time")
+	@Column(name = "response_time")
 	@CreationTimestamp
-	private LocalDateTime respTime;
+	private LocalDateTime responseTime;
+	
+	@UpdateTimestamp
+	@Column(name="response_updation_time")
+    private LocalDateTime updatedResponseDateTime;
+	
 	
 	@Column(name = "accuracy")
 	private int accuracy;	// Likes on Response increase accuracy
@@ -49,19 +50,10 @@ public class Response {
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_feed_id")
+	
 	private Feed feed;
 	
-	public Response(int respId, String answer, LocalDateTime respDate, LocalDateTime respTime, int accuracy, Developer developer,
-			Feed feed) {
-		super();
-		this.respId = respId;
-		this.answer = answer;
-		this.respDate = respDate;
-		this.respTime = respTime;
-		this.accuracy = accuracy;
-		this.developer = developer;
-		this.feed = feed;
-	}
+	
 	public Response() {
 		super();
 	} 
@@ -78,17 +70,18 @@ public class Response {
 		this.answer = answer;
 	}
 	
-	public LocalDateTime getRespDate() {
-		return respDate;
+	
+	public LocalDateTime getResponseTime() {
+		return responseTime;
 	}
-	public void setRespDate(LocalDateTime respDate) {
-		this.respDate = respDate;
+	public void setResponseTime(LocalDateTime responseTime) {
+		this.responseTime = responseTime;
 	}
-	public LocalDateTime getRespTime() {
-		return respTime;
+	public LocalDateTime getUpdatedResponseDateTime() {
+		return updatedResponseDateTime;
 	}
-	public void setRespTime(LocalDateTime respTime) {
-		this.respTime = respTime;
+	public void setUpdatedResponseDateTime(LocalDateTime updatedResponseDateTime) {
+		this.updatedResponseDateTime = updatedResponseDateTime;
 	}
 	public int getAccuracy() {
 		return accuracy;
