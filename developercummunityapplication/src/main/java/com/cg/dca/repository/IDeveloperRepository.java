@@ -21,8 +21,12 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 
 
 	Optional<Developer> findById(int devId);
+	
+	Developer findByDevId(int devId);
 
 	
 	List<Developer> findAll();
+	
+
 	
 }

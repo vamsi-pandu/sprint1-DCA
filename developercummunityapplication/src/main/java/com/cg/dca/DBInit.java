@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.cg.dca.entity.Admin;
 import com.cg.dca.entity.Developer;
 import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Response;
 import com.cg.dca.entity.SkillLevel;
 import com.cg.dca.entity.Topic;
 import com.cg.dca.entity.User;
+import com.cg.dca.repository.IAdminRepository;
 import com.cg.dca.repository.IDeveloperRepository;
 import com.cg.dca.repository.IFeedRepository;
 import com.cg.dca.repository.IResponseRepository;
@@ -21,6 +23,11 @@ import com.cg.dca.repository.IUserRepository;
 @Component
 public class DBInit implements CommandLineRunner{
 
+	
+	@Autowired
+	IAdminRepository adminRepo;
+	
+	
 	@Autowired
 	IUserRepository userRepo;
 	@Autowired
@@ -36,6 +43,20 @@ public class DBInit implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		logger.info("H2 datbase product created");
+		
+		/*-----------------Admin entity--------------------*/
+		
+		Admin admin = new Admin();
+		admin.setAdId(1);
+		admin.setAdName("Azmath");
+		admin.setAdPassword("1234");
+		admin.setAdUser("azzu");
+		adminRepo.save(admin);
+		
+		
+		
+		
+		
 		/*-----------------user entity--------------------*/
 		User user = new User();
 		
