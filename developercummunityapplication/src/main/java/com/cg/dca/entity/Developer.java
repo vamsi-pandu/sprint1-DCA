@@ -52,8 +52,7 @@ public class Developer implements Serializable {
 	private int  totalFeeds;
 	
 	
-	@Column(name="reputation")
-	private int  reputations;
+
 
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="fk_user_id")
@@ -114,12 +113,7 @@ public class Developer implements Serializable {
 	public void setTotalFeeds(int totalFeeds) {
 		this.totalFeeds = totalFeeds;
 	}
-	public int getReputations() {
-		return reputations;
-	}
-	public void setReputations(int reputations) {
-		this.reputations = reputations;
-	}
+	
 	public User getUser() {
 		return user;
 	}

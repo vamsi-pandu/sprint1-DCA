@@ -75,7 +75,6 @@ public class DBInit implements CommandLineRunner{
 		developer.setIsVerified(true);
 		developer.setMemberSince(LocalDate.of(2020, 9, 9));
 		developer.setName("Raju");
-		developer.setReputations(5);
 		developer.setSkillLevel(SkillLevel.INTERMEDIATE);
 		//dev.setTotalFeeds(1);
 		developer.setUser(user);
