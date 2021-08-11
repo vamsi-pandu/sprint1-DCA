@@ -38,8 +38,8 @@ class IResponseServiceImplTest {
 	void testAddResponse() {
 		Response r = new Response();
 		r.setRespId(105);
-		r.setRespTime(LocalDateTime.now());
-		r.setRespDate(LocalDateTime.now());
+		r.setResponseTime(LocalDateTime.now());
+		r.setUpdatedResponseDateTime(LocalDateTime.now());
 		r.setAnswer("Responses are listed successfully");
 		when(responseRepo.existsById(105)).thenReturn(true);
 		try {
@@ -67,8 +67,8 @@ class IResponseServiceImplTest {
 		feed.setFeedId(201);
 		response.setFeed(feed);
 		
-		response.setRespDate(LocalDateTime.now());
-		response.setRespTime(LocalDateTime.now());
+		response.setUpdatedResponseDateTime(LocalDateTime.now());
+		response.setResponseTime(LocalDateTime.now());
 		
 		List<Response> responseList = new ArrayList<Response>();
 		responseList.add(response);
@@ -90,8 +90,8 @@ class IResponseServiceImplTest {
 		feed.setFeedId(201);
 		response.setFeed(feed);
 		
-		response.setRespDate(LocalDateTime.now());
-		response.setRespTime(LocalDateTime.now());
+		response.setUpdatedResponseDateTime(LocalDateTime.now());
+		response.setResponseTime(LocalDateTime.now());
 		
 		List<Response> responseList = new ArrayList<Response>();
 		responseList.add(response);
