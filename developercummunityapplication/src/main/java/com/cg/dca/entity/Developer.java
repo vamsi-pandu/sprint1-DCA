@@ -18,11 +18,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Developer")
 public class Developer implements Serializable {
 
-	
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	//private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="dev_id")
@@ -56,10 +59,12 @@ public class Developer implements Serializable {
 
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="fk_user_id")
+	@JsonBackReference
 	private User user;
 
 	
 	@OneToMany(mappedBy="developer",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private  List<Feed> feedList;
 
 	@Column(name="is_verified")
