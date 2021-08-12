@@ -15,7 +15,7 @@ public interface IDeveloperService {
 	
 	 Optional<Developer> editDeveloper(Developer dev);
 	
-     String statusUpdate(Developer dev);	// Block/Unblock
+   
 	
      Optional<Developer> getDeveloper(int devId) throws UnknownDeveloperException;
 	

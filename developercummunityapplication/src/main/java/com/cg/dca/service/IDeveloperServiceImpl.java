@@ -52,14 +52,7 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 		return existing;
 	}
 
-	@Override
-	public String statusUpdate(Developer dev) {
-		boolean checkStatus = dev.getIsBlocked();
-		if (checkStatus)
-			return "Developer With Id " + dev.getDevId() + " is Blocked";
-		else
-			return "Developer With Id " + dev.getDevId() + " Not Blocked";
-	}
+
 
 	public Optional<Developer> getDeveloper(int devId) throws UnknownDeveloperException {
 		Optional<Developer> dev = devRepo.findById(devId);
