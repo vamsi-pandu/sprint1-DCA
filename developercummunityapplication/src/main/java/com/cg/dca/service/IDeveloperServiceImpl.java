@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.dca.entity.Developer;
+import com.cg.dca.entity.Feed;
+import com.cg.dca.entity.SkillLevel;
+import com.cg.dca.entity.Topic;
 import com.cg.dca.exception.DeveloperAlreadyExistsException;
 import com.cg.dca.exception.UnknownDeveloperException;
+import com.cg.dca.exception.UnknownFeedException;
 import com.cg.dca.repository.IDeveloperRepository;
 
 
@@ -71,6 +75,13 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 
 	}
 	
+	@Override
+	public List<Developer> getDeveloperBySkillLevel(SkillLevel  skillLevel) {
+		List<Developer> listOfDeveloperBySkill = devRepo.findAllBySkillLevel(skillLevel);
+		if(listOfDeveloperBySkill.isEmpty())
+			throw new UnknownFeedException("No feed found with topic "+skillLevel);
+		return listOfDeveloperBySkill;
+	}
 	
 
 }

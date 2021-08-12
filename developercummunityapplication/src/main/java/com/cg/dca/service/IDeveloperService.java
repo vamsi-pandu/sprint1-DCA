@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.dca.entity.Developer;
+import com.cg.dca.entity.Feed;
+import com.cg.dca.entity.SkillLevel;
+import com.cg.dca.entity.Topic;
 import com.cg.dca.exception.UnknownDeveloperException;
 
 public interface IDeveloperService {
@@ -18,5 +21,5 @@ public interface IDeveloperService {
 	
 	List<Developer> getAllDevelopers();
 	
-	
+	List<Developer> getDeveloperBySkillLevel(SkillLevel  skillLevel);
 }

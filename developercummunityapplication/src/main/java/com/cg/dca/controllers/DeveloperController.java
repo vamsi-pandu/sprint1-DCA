@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.cg.dca.entity.Developer;
+import com.cg.dca.entity.Feed;
+import com.cg.dca.entity.SkillLevel;
+import com.cg.dca.entity.Topic;
 import com.cg.dca.exception.DeveloperAlreadyExistsException;
 import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.service.IDeveloperServiceImpl;
@@ -74,7 +77,13 @@ public class DeveloperController {
 
 	}
 	
-	
+	@GetMapping("/developer/{skillLevel}")
+	public ResponseEntity<?> getDeveloperBySkill(@PathVariable("skillLevel") SkillLevel  skillLevel){
+		List<Developer> listOfDeveloperBySkills = (List<Developer>) service.getDeveloperBySkillLevel(skillLevel);
+
+		return new ResponseEntity<Object>(listOfDeveloperBySkills,HttpStatus.OK);
+	}
+
 
 
 }

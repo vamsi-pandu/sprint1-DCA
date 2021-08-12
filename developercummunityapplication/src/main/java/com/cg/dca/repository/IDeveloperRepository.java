@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.cg.dca.entity.Developer;
+import com.cg.dca.entity.SkillLevel;
 import com.cg.dca.exception.UnknownDeveloperException;
 
 @Repository
@@ -27,6 +28,6 @@ public interface IDeveloperRepository extends JpaRepository<Developer,Integer> {
 	
 	List<Developer> findAll();
 	
-
+	List<Developer> findAllBySkillLevel(SkillLevel  skillLevel);
 	
 }
