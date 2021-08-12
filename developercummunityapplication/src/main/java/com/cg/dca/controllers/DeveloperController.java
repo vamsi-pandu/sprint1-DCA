@@ -4,6 +4,7 @@ package com.cg.dca.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +34,7 @@ public class DeveloperController {
 	IDeveloperServiceImpl service;
 
 	@PostMapping("/addDeveloper")
-	public ResponseEntity<String> addDeveloper(@RequestBody Developer dev) throws DeveloperAlreadyExistsException {
+	public ResponseEntity<String> addDeveloper(@Valid @RequestBody Developer dev) throws DeveloperAlreadyExistsException {
 		service.addDeveloper(dev);
 		return new ResponseEntity<String>("Developer Added Successfully", HttpStatus.OK);
 

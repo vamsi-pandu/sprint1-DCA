@@ -15,6 +15,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name ="response")
@@ -39,7 +40,7 @@ public class Response {
 	
 	@OneToOne
 	@JoinColumn(name ="fk_dev_id")
-	@JsonBackReference
+	@JsonIgnore
 	private Developer developer;
 	
 	@ManyToOne

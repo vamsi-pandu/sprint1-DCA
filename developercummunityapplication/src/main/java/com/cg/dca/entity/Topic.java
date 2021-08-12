@@ -2,7 +2,7 @@ package com.cg.dca.entity;
 
 public enum Topic {
 
-	PROGRAMMIG,
+	PROGRAMMING,
 	JAVA,
 	TESTING;
 }

@@ -15,28 +15,28 @@ import com.cg.dca.repository.IResponseRepository;
 public class IResponseServiceImpl implements IResponseService {
 	//using the methods of crud repository
 	@Autowired
-	IResponseRepository responserepo;
+	IResponseRepository responseRepo;
 	
 	
 
 	public IResponseServiceImpl(IResponseRepository responseRepo) {
 		super();
-		this.responserepo = responseRepo;
+		this.responseRepo = responseRepo;
 	}
 
 	@Override
 	public Response addResponse(Response resp)  {
-		if(responserepo.existsById(resp.getRespId())) {
+		if(responseRepo.existsById(resp.getRespId())) {
 			throw new ResponseAlreadyExistsException("Response with response id: " +resp.getRespId() + " already exists:RESPONSE CAN'T BE ADDED");
 		}
-		return responserepo.save(resp);
+		return responseRepo.save(resp);
 		
 	}
 
 	@Override
 	public Response editResponse(Response resp){
-		if(responserepo.existsById(resp.getRespId())) {
-			return responserepo.save(resp);
+		if(responseRepo.existsById(resp.getRespId())) {
+			return responseRepo.save(resp);
 		}
 		else {
 			throw new UnknownResponseException("Response with id: " + resp.getRespId() + " not present:NO SUCH RESPONSE TO EDIT");
@@ -45,11 +45,11 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public Optional<Response> removeResponse(int respId)  {
-		Optional<Response> response = responserepo.findById(respId);
+		Optional<Response> response = responseRepo.findById(respId);
 		if(!response.isPresent()){
 			throw new UnknownResponseException("Response with id: " + respId + " not present:NO SUCH RESPONSE TO DELETE");
 		}
-		responserepo.deleteById(respId);
+		responseRepo.deleteById(respId);
 		return response;
 	}
 
@@ -57,7 +57,7 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public List<Response> getResponseByFeed(int feedId)  {
-		List<Response> ListOfResponsesByFeed = responserepo.findAllResponseByFeed_FeedId(feedId);
+		List<Response> ListOfResponsesByFeed = responseRepo.findAllResponseByFeed_FeedId(feedId);
 		if(ListOfResponsesByFeed.isEmpty()) {
 			throw new UnknownResponseException("No Responses found for the feed id: " + feedId);
 		}
@@ -67,7 +67,7 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public List<Response> getResponseByDeveloper(int devId)  {
-		List<Response> ListOfResponseByDeveloper = responserepo.findAllResponseByDeveloper_DevId(devId);
+		List<Response> ListOfResponseByDeveloper = responseRepo.findAllResponseByDeveloper_DevId(devId);
 		if(ListOfResponseByDeveloper.isEmpty()) {
 			throw new UnknownResponseException("No Responses found for the feed id: " + devId);
 		}
