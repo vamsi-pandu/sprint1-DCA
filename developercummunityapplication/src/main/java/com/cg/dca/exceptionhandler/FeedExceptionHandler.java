@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.cg.dca.exception.FeedAlreadyFoundException;
 import com.cg.dca.exception.UnknownFeedException;
 
-@ControllerAdvice
+@ControllerAdvice            //  handles all the exceptions in the application
 public class FeedExceptionHandler {
 	
-	@ExceptionHandler(UnknownFeedException.class)
+	@ExceptionHandler(UnknownFeedException.class)  //  handles specific exceptions
 	public ResponseEntity<?> handleUnknownFeed(UnknownFeedException ex) {
 
 	    Map<String, Object> errorBody = new LinkedHashMap<>();

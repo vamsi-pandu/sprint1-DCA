@@ -22,7 +22,10 @@ import com.cg.dca.repository.IUserRepository;
 
 @Component
 public class DBInit implements CommandLineRunner{
+	                           //  this bean can be used to execute any code at the start of the application
 
+	//  this class is to provide initial values in the database when springboot runs
+	
 	
 	@Autowired
 	IAdminRepository adminRepo;
@@ -38,6 +41,7 @@ public class DBInit implements CommandLineRunner{
 	IResponseRepository responseRepo;
 	
 	Logger logger = LoggerFactory.getLogger(DBInit.class);
+	 //  to log messages for a specific system or application component
 	
 	@Override
 	public void run(String... args) throws Exception {

@@ -44,6 +44,20 @@ public class FeedController {
 			return new ResponseEntity<Feed>(feed.get(),HttpStatus.OK);
 		}
 
+		@DeleteMapping("{feedId}")
+		public ResponseEntity<?> deleteFeed(@PathVariable("feedId") int feedId){
+			service.removeFeed(feedId);
+			return new ResponseEntity<String>("Feed Deleted Succesfully",HttpStatus.OK);
+
+		}
+
+
+		@PutMapping("update")
+		public ResponseEntity<?> updateFeed(@RequestBody Feed feed){
+			service.editFeed(feed);
+			return new ResponseEntity<String>("Feed Updated Succesfully",HttpStatus.OK);
+
+		}
 
 
 		@GetMapping("/developer/{devId}")
@@ -68,23 +82,6 @@ public class FeedController {
 			List<Feed> listOfKeyword = (List<Feed>) service.getFeedsByKeyword(keyword);
 
 			return new ResponseEntity<Object>(listOfKeyword,HttpStatus.OK);
-		}
-
-
-
-		@DeleteMapping("{feedId}")
-		public ResponseEntity<?> deleteFeed(@PathVariable("feedId") int feedId){
-			service.removeFeed(feedId);
-			return new ResponseEntity<String>("Feed Deleted Succesfully",HttpStatus.OK);
-
-		}
-
-
-		@PutMapping("update")
-		public ResponseEntity<?> updateFeed(@RequestBody Feed feed){
-			service.editFeed(feed);
-			return new ResponseEntity<String>("Feed Updated Succesfully",HttpStatus.OK);
-
 		}
 
 

@@ -6,9 +6,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication
-@EnableSwagger2
-@ComponentScan(basePackages = "com")
+@SpringBootApplication     //  makes possible to get different data from application based on URL from client side
+@EnableSwagger2            //  Indicates that Swagger support should be enabled
+                           //  swagger is to test application in any normal browser
+
+@ComponentScan(basePackages = "com")  //  scans the beans from the given base package name
 public class DevelopercummunityapplicationApplication {
 
 	public static void main(String[] args) {
