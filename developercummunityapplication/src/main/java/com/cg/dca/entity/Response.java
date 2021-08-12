@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Response {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //the Id primary key will be auto-generated
 	@Column(name="response_id")
 	private int respId;
 	
@@ -40,7 +40,7 @@ public class Response {
 	
 	@OneToOne
 	@JoinColumn(name ="fk_dev_id")
-	@JsonIgnore
+	@JsonIgnore //@JsonIgnore is used at field level to mark a property or list of properties to be ignored.
 	private Developer developer;
 	
 	@ManyToOne

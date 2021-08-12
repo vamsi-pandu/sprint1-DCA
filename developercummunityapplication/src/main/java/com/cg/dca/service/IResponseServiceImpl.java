@@ -26,6 +26,7 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public Response addResponse(Response resp)  {
+		//existsById is Jpa repository method fetch data by primary key to check of its presence in database
 		if(responseRepo.existsById(resp.getRespId())) {
 			throw new ResponseAlreadyExistsException("Response with response id: " +resp.getRespId() + " already exists:RESPONSE CAN'T BE ADDED");
 		}
@@ -49,6 +50,7 @@ public class IResponseServiceImpl implements IResponseService {
 		if(!response.isPresent()){
 			throw new UnknownResponseException("Response with id: " + respId + " not present:NO SUCH RESPONSE TO DELETE");
 		}
+		//deleteById is the Jpa method to delete the object with the primary key
 		responseRepo.deleteById(respId);
 		return response;
 	}
@@ -57,6 +59,7 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public List<Response> getResponseByFeed(int feedId)  {
+		//findAllResponseByFeed_FeedId is the method to check the multiple responses by feedId
 		List<Response> ListOfResponsesByFeed = responseRepo.findAllResponseByFeed_FeedId(feedId);
 		if(ListOfResponsesByFeed.isEmpty()) {
 			throw new UnknownResponseException("No Responses found for the feed id: " + feedId);
@@ -67,6 +70,7 @@ public class IResponseServiceImpl implements IResponseService {
 
 	@Override
 	public List<Response> getResponseByDeveloper(int devId)  {
+		//findAllResponseByDeveloper_DevId is the method to check the multiple responses by developerId
 		List<Response> ListOfResponseByDeveloper = responseRepo.findAllResponseByDeveloper_DevId(devId);
 		if(ListOfResponseByDeveloper.isEmpty()) {
 			throw new UnknownResponseException("No Responses found for the feed id: " + devId);

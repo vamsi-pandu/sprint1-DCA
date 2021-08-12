@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Developer")
+//Serializable is useful to recreate objects into its original state
 public class Developer implements Serializable {
 
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
