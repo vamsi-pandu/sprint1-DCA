@@ -35,8 +35,7 @@ public class AdminController {
 
 		return new ResponseEntity<Object>(admin.get(),HttpStatus.OK);
 	}
-
-
+	
 	@GetMapping("getDev/{devId}")
 	public ResponseEntity<Object> getDeveloper(@PathVariable("devId") Integer devId){ 
 		Optional<Developer>developer = service.getDeveloperById(devId);
@@ -45,12 +44,18 @@ public class AdminController {
 	}
 
 	
-	
 	@GetMapping("getDev/{devId}/validate")
 	public ResponseEntity<Object> validateDeveloper(@PathVariable("devId") Integer devId){ 
 		Developer developer = service.validateDeveloperById(devId);
 		return new ResponseEntity<Object>(developer,HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("getDev/{devId}/invalidate")
+	public ResponseEntity<Object> invalidateDeveloper(@PathVariable("devId") Integer devId){ 
+		Developer developer = service.invalidateDeveloperById(devId);
+		return new ResponseEntity<Object>(developer,HttpStatus.OK);
+	
 
+}
 }
