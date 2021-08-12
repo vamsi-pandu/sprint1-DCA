@@ -15,6 +15,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name ="response")
@@ -44,6 +45,7 @@ public class Response {
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_feed_id")
+	@JsonIgnore
 	private Feed feed;
 	
 	
