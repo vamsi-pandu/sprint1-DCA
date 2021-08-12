@@ -40,12 +40,11 @@ public class Response {
 	
 	@OneToOne
 	@JoinColumn(name ="fk_dev_id")
-	@JsonBackReference
+	@JsonIgnore
 	private Developer developer;
 	
 	@ManyToOne
 	@JoinColumn(name ="fk_feed_id")
-	@JsonIgnore
 	private Feed feed;
 	
 	
