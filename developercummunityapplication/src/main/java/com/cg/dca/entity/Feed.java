@@ -24,20 +24,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "Feed")
 public class Feed {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="feed_id" ,nullable = false)
+	@Id                                             //  Specifies the primary key of an entity      
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Provides for the specification of generation strategies for thevalues of primary keys. 
+	@Column(name="feed_id" ,nullable = false)      //  Specifies the mapped column for a persistent property or field.
 	private int feedId;
 	
-	@NotBlank(message = "Query is mandatory")
+	@NotBlank(message = "Query is mandatory")     //  The annotated element must not be null and must contain at least onenon-whitespace character.
 	private String query;
 	
 
-	@CreationTimestamp
+	@CreationTimestamp                //  The property value will be set to the current VM date exactly once when saving the owning entity for the first time. 
 	@Column(name = "feed_time",updatable=false)
 	private LocalDateTime feedTime;
 	
-	@UpdateTimestamp
+	@UpdateTimestamp                 //  The property value will be set to the current VM date whenever the owning entity is updated. 
 	@Column(name="feed_updation_time")
     private LocalDateTime updateDateTime;
 	
@@ -45,19 +45,19 @@ public class Feed {
 	private Topic topic;// Programming/Java/Testing
 	
 	
-	@ManyToOne
-	@JoinColumn(name ="fk_developer_id")
+	@ManyToOne                     //  one developer is mapped with one or many feeds
+	@JoinColumn(name ="fk_developer_id")   //  this column is joined in the feed entity table
 	@JsonBackReference    // is used to mark child objects.
 	private Developer developer;
 	
-	@OneToMany(mappedBy="feed",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="feed",cascade=CascadeType.ALL)  //  one feed is mapped to many responses
 	@JsonIgnore     //is used at field level to mark a property or list of properties to be ignored.
 	private List<Response> responses;
 	
 	private int totalComments;
 	
 	
-	public Feed() {
+	public Feed() {              //  default constructor
 		super();
 	}
 	

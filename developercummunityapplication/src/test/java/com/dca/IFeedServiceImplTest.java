@@ -63,14 +63,6 @@ class IFeedServiceImplTest {
 			fail("no feed with id exists");
 		}
 		
-/*		try {
-			service.removeFeed(100);
-			when(repo.findById(100)).thenReturn(null);
-			Optional<Feed> feed = service.getFeed(100);
-			assertNull(feed);
-		}catch(UnknownFeedException ex) {
-			fail("delete could not be done");
-		}*/
 	}
 	
 	@Test
