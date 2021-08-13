@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Topic;
-import com.cg.dca.exception.FeedAlreadyFoundException;
-import com.cg.dca.exception.UnknownDeveloperException;
+import com.cg.dca.exception.FeedAlreadyExistsException;
 import com.cg.dca.exception.UnknownFeedException;
 import com.cg.dca.repository.IFeedRepository;
 
@@ -24,24 +23,22 @@ public class IFeedServiceImpl implements IFeedService{
 		this.feedRepo = feedRepo;
 	}
 
-	/*@Override
-	public Feed addFeed(Feed feed) {
-		if(feedRepo.existsById(feed.getFeedId())) 
-			throw new FeedAlreadyFoundException("Feed with "+feed.getFeedId()+" already exists");
-		return feedRepo.save(feed);
-	}*/
+	// addFeed method is to add and save the feed details with feedId as primary key.
+	// throws FeedAlreadyExistsException if feed with feedId already exists.
 	@Override
 	public Optional<Feed> addFeed(Feed feed) {
-	Optional<Feed> newFeed = feedRepo.findById(feed.getFeedId());
+	Optional<Feed> optionalFeed = feedRepo.findById(feed.getFeedId());
 
-	if(!newFeed.isPresent()) {
+	if(!optionalFeed.isPresent()) {
 		feedRepo.save(feed);
-		return newFeed;
+		return optionalFeed;
 	}
-	throw new UnknownFeedException("Feed With Id "+ feed.getFeedId() +" exists already");
+	throw new FeedAlreadyExistsException("Feed With Id "+ feed.getFeedId() +" exists already");
 
 }
 
+	//editFeed method is to edit the existing feed details
+	// throws UnknownFeedException if feed details with given feedId does not exist.
 	@Override
 	public Feed editFeed(Feed feed) {
 		if(feedRepo.existsById(feed.getFeedId())) 
@@ -50,35 +47,42 @@ public class IFeedServiceImpl implements IFeedService{
 			throw new UnknownFeedException("Feed with "+feed.getFeedId()+" does not exists");
 	}
 
-	
+	//getFeed method is to get feed details by providing feedId.
+	//throws UnknownFeedException if feed details with given feedId does not exist.
 	@Override
 	public Optional<Feed> getFeed(int feedId) {
-		Optional<Feed> feed = feedRepo.findById(feedId);
-		if(feed.isPresent())
-		return feed;
+		Optional<Feed> optionalfFeed = feedRepo.findById(feedId);
+		if(optionalfFeed.isPresent())
+		return optionalfFeed;
 		else
 			throw new UnknownFeedException("Feed with "+feedId+" does not exists");
 	}
 
+	//removeFeed is to delete feed details by providing feedId
+	//throws UnknownFeedException if feed details with given feedId does not exist.
 	@Override
 	public Optional<Feed> removeFeed(int feedId) {
-		Optional<Feed> feed = feedRepo.findById(feedId);
-		if(feed.isPresent()) {
+		Optional<Feed> optionalFeed = feedRepo.findById(feedId);
+		if(optionalFeed.isPresent()) {
 			feedRepo.deleteById(feedId);
-		    return feed;
+		    return optionalFeed;
 		}
 		else
 			throw new UnknownFeedException("Feed with "+feedId+" does not exists");
 	}
 
+	//getFeedsByDeveloper method is to get list of feeds given by a developer by providing developer id.
+	//throws UnknownFeedException if feed details with given devId is not found.
 	@Override
 	public List<Feed> getFeedsByDeveloper(int devId) {
 		List<Feed> listOfFeedsByDev = feedRepo.findAllByDeveloper_DevId(devId);
 		if(listOfFeedsByDev.isEmpty())
-			throw new UnknownDeveloperException("No feed found for the developer with "+devId);
+			throw new UnknownFeedException("No feed found for the developer with "+devId);
 		return listOfFeedsByDev;
 	}
 	
+	//getFeedsByKeyword method is to get list of feeds containing given keyword.
+	//throws UnknownFeedException if feed details with given keyword is not found.
 	@Override
 	public List<Feed> getFeedsByKeyword(String keyword) {
 		List<Feed> listOfFeedByKeyword = feedRepo.findByKeyword(keyword);
@@ -88,6 +92,8 @@ public class IFeedServiceImpl implements IFeedService{
 		return listOfFeedByKeyword;
 	}
 
+	//getFeedsByTopic method is to get list of feeds by given topic .
+	//throws UnknownFeedException if feed details with given topic is not found.
 	@Override
 	public List<Feed> getFeedsByTopic(Topic topic) {
 		List<Feed> listOfFeedByTopic = feedRepo.findAllByTopic(topic);

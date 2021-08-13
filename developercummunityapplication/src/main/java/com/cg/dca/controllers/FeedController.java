@@ -29,7 +29,7 @@ public class FeedController {
 	IFeedService service;
 
 	
-	
+	    
 		@PostMapping("save")
 		public ResponseEntity<?> saveFeed(@Valid  @RequestBody Feed feed){
 			service.addFeed(feed);
@@ -38,18 +38,13 @@ public class FeedController {
 
 
 
-		@GetMapping("{feedId}")
+		@GetMapping("/getFeed/{feedId}")
 		public ResponseEntity<?> getFeed(@PathVariable("feedId") int feedId){
 			Optional<Feed> feed = service.getFeed(feedId);
 			return new ResponseEntity<Feed>(feed.get(),HttpStatus.OK);
 		}
 
-		@DeleteMapping("{feedId}")
-		public ResponseEntity<?> deleteFeed(@PathVariable("feedId") int feedId){
-			service.removeFeed(feedId);
-			return new ResponseEntity<String>("Feed Deleted Succesfully",HttpStatus.OK);
-
-		}
+		
 
 
 		@PutMapping("update")
@@ -59,8 +54,14 @@ public class FeedController {
 
 		}
 
+		@DeleteMapping("/delete/{feedId}")
+		public ResponseEntity<?> deleteFeed(@PathVariable("feedId") int feedId){
+			service.removeFeed(feedId);
+			return new ResponseEntity<String>("Feed Deleted Succesfully",HttpStatus.OK);
 
-		@GetMapping("/developer/{devId}")
+		}
+
+		@GetMapping("/getFeedBydeveloper/{devId}")
 		public ResponseEntity<?> getFeedByDeveloper(@PathVariable("devId") int devId){
 			List<Feed> listOfFeeds = (List<Feed>) service.getFeedsByDeveloper(devId);
 
@@ -68,7 +69,7 @@ public class FeedController {
 		}
 
 
-		@GetMapping("/topic/{topic}")
+		@GetMapping("/getFeedBytopic/{topic}")
 		public ResponseEntity<?> getFeedByTopic(@PathVariable("topic") Topic topic){
 			List<Feed> listOfTopics = (List<Feed>) service.getFeedsByTopic(topic);
 
@@ -77,7 +78,7 @@ public class FeedController {
 
 
 		
-		@GetMapping("/keyword/{keyword}")
+		@GetMapping("/getFeedBykeyword/{keyword}")
 		public ResponseEntity<?> getFeedByKeyword(@PathVariable("keyword") String keyword){
 			List<Feed> listOfKeyword = (List<Feed>) service.getFeedsByKeyword(keyword);
 

@@ -10,16 +10,22 @@ import org.springframework.stereotype.Repository;
 import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Topic;
 
-@Repository                                //  used to declare class as a repository object, auto-detected by spring framework
+@Repository  //  used to declare class as a repository object, auto-detected by spring framework
 public interface IFeedRepository extends JpaRepository<Feed, Integer>{  
 	
 	List<Feed> findAllByDeveloper_DevId(int devId);
 	
-	@Query("SELECT feed FROM Feed feed WHERE feed.query like %:keyword%")    //  custom query
-	List<Feed> findByKeyword(@Param("keyword") String keyword);    //  Annotation to bind method parameters to a query via a named parameter.
+	
+	 //  custom query to select feeds containing the keyword provided.
+	
+	@Query("SELECT feed FROM Feed feed WHERE feed.query like %:keyword%")   
+	List<Feed> findByKeyword(@Param("keyword") String keyword);  
+	
+	// Param binds the  method parameters to a query via a named parameter.
 	
 	
-	List<Feed> findAllByTopic(Topic topic);         //  method to list feed by topic
+	 //  method to list all the  feeds by given topic topic
+	List<Feed> findAllByTopic(Topic topic);       
 
 	
 }

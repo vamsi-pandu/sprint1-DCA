@@ -9,13 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.cg.dca.exception.FeedAlreadyFoundException;
+import com.cg.dca.exception.FeedAlreadyExistsException;
 import com.cg.dca.exception.UnknownFeedException;
 
 @ControllerAdvice            //  handles all the exceptions in the application
 public class FeedExceptionHandler {
 	
-	@ExceptionHandler(UnknownFeedException.class)  //  handles specific exceptions
+	@ExceptionHandler(UnknownFeedException.class)  //  handles specific exception class
 	public ResponseEntity<?> handleUnknownFeed(UnknownFeedException ex) {
 
 	    Map<String, Object> errorBody = new LinkedHashMap<>();
@@ -26,8 +26,8 @@ public class FeedExceptionHandler {
 		return new ResponseEntity<Object>(errorBody, HttpStatus.NOT_FOUND);
 	}
 	
-	@ExceptionHandler(FeedAlreadyFoundException.class)
-	public ResponseEntity<?> handleFeed(FeedAlreadyFoundException ex) {
+	@ExceptionHandler(FeedAlreadyExistsException.class)
+	public ResponseEntity<?> handleFeed(FeedAlreadyExistsException ex) {
 
 		Map<String, Object> errorBody = new LinkedHashMap<>();
 		errorBody.put("error", " failed");

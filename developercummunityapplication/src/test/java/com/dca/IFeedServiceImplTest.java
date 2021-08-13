@@ -28,6 +28,7 @@ class IFeedServiceImplTest {
 	
 	IFeedService service = new IFeedServiceImpl(repo);
 	
+	// this test is done to check whether correct values are being added in feed entity.
 	@Test
 	public void addFeedTest() {
 		Feed feed = new Feed();
@@ -37,11 +38,12 @@ class IFeedServiceImplTest {
 		feed.setTopic(Topic.JAVA);
 		feed.setTotalComments(2);
 		
-		when(repo.existsById(100)).thenReturn(true);
-		assertEquals(2, feed.getTotalComments());
+		when(repo.existsById(100)).thenReturn(true);//we use "when" ,when we want the mock to return particular value when particular method is called. 
+		assertEquals(2, feed.getTotalComments());  //Assert that expected and actual are equal
 		
 	}
 	
+	//this test is to check whether delete feed is working.
 	@Test
 	public void removeFeedTest() {
 		Feed feed = new Feed();
@@ -65,6 +67,7 @@ class IFeedServiceImplTest {
 		
 	}
 	
+	//this test is to check whether list of feeds of a particular developer is correct.
 	@Test
 	public void getFeedByDevelopersTest() {
 		Feed feed = new Feed();
@@ -86,6 +89,7 @@ class IFeedServiceImplTest {
 		assertThat(service.getFeedsByDeveloper(100)).isEqualTo(devList);
 	}
 	
+	//this test is to check whether findAllByTopic method is returning feeds related to given topic.
 	@Test
 	public void getFeedByTopicTest() {
 		Feed q1 = new Feed();
