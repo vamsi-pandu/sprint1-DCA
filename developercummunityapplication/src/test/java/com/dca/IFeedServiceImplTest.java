@@ -10,10 +10,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.when;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.cg.dca.entity.Developer;
 import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Topic;
@@ -23,6 +20,9 @@ import com.cg.dca.service.IFeedService;
 import com.cg.dca.service.IFeedServiceImpl;
 
 class IFeedServiceImplTest {
+	
+	//The Mockito.mock() method allows us to create a mock object of a class or an interface.
+    //We can then use the mock to stub return values for its methods and verify if they were called.
 	
 	IFeedRepository repo = Mockito.mock(IFeedRepository.class);
 	
