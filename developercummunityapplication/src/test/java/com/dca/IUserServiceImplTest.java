@@ -61,6 +61,7 @@ class IUserServiceImplTest {
 		u1.setPassword("password1");
 		u1.setRole("senior_developer");
 		
+		
 		User u2=new User();
 		u2.setUserId("user2");
 		u2.setPassword("password2");
