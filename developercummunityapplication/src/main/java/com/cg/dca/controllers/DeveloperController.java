@@ -29,14 +29,17 @@ import com.cg.dca.entity.Topic;
 import com.cg.dca.exception.DeveloperAlreadyExistsException;
 import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.service.IDeveloperServiceImpl;
-
+//@RestController is a specialized version of the controller. It includes the @Controller and @ResponseBody annotations
 @RestController
+
+//@RequestMapping annotation maps HTTP requests to handler methods of  REST controllers.
 @RequestMapping("/developer")
 public class DeveloperController {
 
 	@Autowired
 	IDeveloperServiceImpl service;
 
+	//@PostMapping annotated methods handle the HTTP POST requests matched with given URI expression.
 	@PostMapping("/addDeveloper")
 	public ResponseEntity<String> addDeveloper(@Valid @RequestBody Developer dev) throws DeveloperAlreadyExistsException {
 		service.addDeveloper(dev);
@@ -44,6 +47,7 @@ public class DeveloperController {
 
 	}
 
+	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 	@GetMapping("/getDeveloperById/{devId}")
 	public ResponseEntity<Object> getDeveloper(@PathVariable int devId) throws UnknownDeveloperException {
 
@@ -55,6 +59,7 @@ public class DeveloperController {
 
 	}
 
+	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 	@GetMapping("/isBlocked/{devId}")
 	public ResponseEntity<String> getStatus(@PathVariable("devId") int devId) {
 		Optional<Developer> opt = service.getDeveloper(devId);
@@ -72,7 +77,11 @@ public class DeveloperController {
 
 	}
 
+	//The PUT HTTP method is used to update the resource and @PutMapping annotation for mapping HTTP PUT requests onto specific handler methods.
 	@PutMapping("/editDeveloper/{devId}")
+	
+	//@RequestBody annotation is used to indicating a method parameter should be bind to the body of the HTTP request.
+	//@PathVariable annotation can be used to handle template variables in the request URI mapping, and set them as method parameters.
 	public ResponseEntity<String> editDeveloper(@RequestBody Developer dev, @PathVariable int devId)
 			throws UnknownDeveloperException {
 		service.editDeveloper(dev);
@@ -80,6 +89,7 @@ public class DeveloperController {
 
 	}
 
+	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 	@GetMapping("/getAllDeveloper")
 	public ResponseEntity<?> getAllDevelopers() {
 		List<Developer> list = (List<Developer>) service.getAllDevelopers();
@@ -88,6 +98,7 @@ public class DeveloperController {
 
 	}
 	
+	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 	@GetMapping("/developer/{skillLevel}")
 	public ResponseEntity<?> getDeveloperBySkill(@PathVariable("skillLevel") SkillLevel  skillLevel){
 		List<Developer> listOfDeveloperBySkills = (List<Developer>) service.getDeveloperBySkillLevel(skillLevel);

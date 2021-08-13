@@ -26,8 +26,8 @@ public class Developer implements Serializable {
 
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	//private static final long serialVersionUID = 1L;
-	@Id
-	@Column(name="dev_id")
+	@Id                          //the Id primary key will be auto-generated
+	@Column(name="dev_id")  
 	private	int devId;
 	
 	@NotEmpty(message = "Name Should not be empty")
@@ -62,7 +62,7 @@ public class Developer implements Serializable {
 
 	
 	@OneToMany(mappedBy="developer",cascade=CascadeType.ALL)
-	@JsonIgnore
+	@JsonIgnore                  //@JsonIgnore is used at field level to mark a property or list of properties to be ignored.
 	private  List<Feed> feedList;
 
 	@Column(name="is_verified")
