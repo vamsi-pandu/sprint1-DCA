@@ -16,7 +16,7 @@ import com.cg.dca.entity.Developer;
 import com.cg.dca.service.IAdminService;
 import com.cg.dca.service.IAdminServiceImpl;
 
-@RestController
+@RestController //restcontroller is specialisation form of @Controller and @ResponseBody handles Http requests from clients and gives Http response.
 @RequestMapping("adminCommunity")
 public class AdminController {
 	@Autowired
@@ -36,22 +36,23 @@ public class AdminController {
 		return new ResponseEntity<Object>(admin.get(),HttpStatus.OK);
 	}
 	
-	@GetMapping("getDev/{devId}")
+	@GetMapping("/getDev/{devId}")
 	public ResponseEntity<Object> getDeveloper(@PathVariable("devId") Integer devId){ 
 		Optional<Developer>developer = service.getDeveloperById(devId);
 		return new ResponseEntity<Object>(developer.get(),HttpStatus.OK);
 		
 	}
 
-	
-	@GetMapping("getDev/{devId}/validate")
+	//Admin can validate any developer by this method
+	@GetMapping("/getDev/{devId}/validate")
 	public ResponseEntity<Object> validateDeveloper(@PathVariable("devId") Integer devId){ 
 		Developer developer = service.validateDeveloperById(devId);
 		return new ResponseEntity<Object>(developer,HttpStatus.OK);
 		
 	}
 	
-	@GetMapping("getDev/{devId}/invalidate")
+	//Admin can invalidate any developer by this method
+	@GetMapping("/getDev/{devId}/invalidate")
 	public ResponseEntity<Object> invalidateDeveloper(@PathVariable("devId") Integer devId){ 
 		Developer developer = service.invalidateDeveloperById(devId);
 		return new ResponseEntity<Object>(developer,HttpStatus.OK);
