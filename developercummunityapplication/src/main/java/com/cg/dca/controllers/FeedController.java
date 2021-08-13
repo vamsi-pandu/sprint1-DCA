@@ -21,23 +21,30 @@ import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Topic;
 import com.cg.dca.service.IFeedService;
 
-@RestController
-@RequestMapping("feed")
+//@RestController-@Controller + @ResponseBody, BY default it returns JSON.
+//It eliminates need of annotating every handling method with @ResponseBody
+//@RequestMapping annotation maps HTTP requests to handler methods of  REST controllers.
+
+@RestController    
+@RequestMapping("feed") 
 public class FeedController {
 	
 	@Autowired
 	IFeedService service;
 
+	 //RequestBody-spring will bind incoming HTTP request body(for the url method in @RequestMapping for that method)to that parameter
+	 //ResponseEntity<> requests whole HTTP response:(status code,headers,body) 
 	
-	    
+	    //this method is to create new feed and save
+	    //@PostMapping annotated methods handle the HTTP POST requests matched with given URI expression.
 		@PostMapping("save")
-		public ResponseEntity<?> saveFeed(@Valid  @RequestBody Feed feed){
+		public ResponseEntity<?> saveFeed(@Valid  @RequestBody Feed feed){    
 			service.addFeed(feed);
-			return new ResponseEntity<String>("Feed Added Successfully",HttpStatus.OK);
+			return new ResponseEntity<String>("Feed Added Successfully",HttpStatus.OK); 
 		}
 
 
-
+        //this method is to get feed by providing feedId
 		@GetMapping("/getFeed/{feedId}")
 		public ResponseEntity<?> getFeed(@PathVariable("feedId") int feedId){
 			Optional<Feed> feed = service.getFeed(feedId);
@@ -46,7 +53,8 @@ public class FeedController {
 
 		
 
-
+        //this method is to update feed details
+		//@PutMapping annotation for mapping HTTP PUT requests onto specific handler methods.
 		@PutMapping("update")
 		public ResponseEntity<?> updateFeed(@RequestBody Feed feed){
 			service.editFeed(feed);
@@ -54,6 +62,8 @@ public class FeedController {
 
 		}
 
+		//this method is to delete the feed by providing feedId
+		//@DeleteMapping annotation for mapping HTTP DELETE requests onto specific handler methods.
 		@DeleteMapping("/delete/{feedId}")
 		public ResponseEntity<?> deleteFeed(@PathVariable("feedId") int feedId){
 			service.removeFeed(feedId);
@@ -61,6 +71,7 @@ public class FeedController {
 
 		}
 
+		//this method is to get list of feeds by developer by providing developer id.
 		@GetMapping("/getFeedBydeveloper/{devId}")
 		public ResponseEntity<?> getFeedByDeveloper(@PathVariable("devId") int devId){
 			List<Feed> listOfFeeds = (List<Feed>) service.getFeedsByDeveloper(devId);
@@ -69,6 +80,8 @@ public class FeedController {
 		}
 
 
+		//this method is to get list of feeds by topic.
+		//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 		@GetMapping("/getFeedBytopic/{topic}")
 		public ResponseEntity<?> getFeedByTopic(@PathVariable("topic") Topic topic){
 			List<Feed> listOfTopics = (List<Feed>) service.getFeedsByTopic(topic);
@@ -77,7 +90,7 @@ public class FeedController {
 		}
 
 
-		
+		//this method is to get list of feeds by keyword.
 		@GetMapping("/getFeedBykeyword/{keyword}")
 		public ResponseEntity<?> getFeedByKeyword(@PathVariable("keyword") String keyword){
 			List<Feed> listOfKeyword = (List<Feed>) service.getFeedsByKeyword(keyword);
