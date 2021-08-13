@@ -1,4 +1,4 @@
-package com.cg.dca.controllers;
+ package com.cg.dca.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,14 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.dca.entity.User;
 import com.cg.dca.service.IUserService;
 
+//@RestController is a specialized version of the controller. It includes the @Controller and @ResponseBody annotations
 @RestController
+
+//@RequestMapping annotation maps HTTP requests to handler methods of  REST controllers.
 @RequestMapping("user")
 public class UserController {
 
 	@Autowired
 	IUserService service;
 
-	
+	    //@PostMapping annotated methods handle the HTTP POST requests matched with given URI expression.
+    	//@RequestBody annotation is used to indicating a method parameter should be bind to the body of the HTTP request.
 	    @PostMapping("/adduser")
      	public ResponseEntity<?> addUser(@Valid @RequestBody User user) {       
 		service.addUser(user);
@@ -42,6 +46,7 @@ public class UserController {
 		}
 		
 
+		//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 		@GetMapping("getLogins")
 		public ResponseEntity<?> getAllUsers(){
 

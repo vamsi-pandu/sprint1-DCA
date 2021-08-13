@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User {
 
-	@Id
+	@Id  //the Id primary key will be auto-generated
 	@Column(name = "user_id")
 	private String userId;
 	

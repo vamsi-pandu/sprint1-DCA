@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.cg.dca.exception.UserAlreadyExistException;
 import com.cg.dca.exception.UserNotFoundException;
 
+//@ControllerAdvice is a specialization of the @Component annotation which allows to handle exceptions across the whole application in one global handling component.
 @ControllerAdvice
 public class UserExceptionHandler {
 
+	//@ExceptionHandler annotation indicates which type of Exception we want to handle
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<?> handleEmployeeDataError(UserNotFoundException unfe){
 		
