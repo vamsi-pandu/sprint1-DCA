@@ -22,7 +22,11 @@ public class IFeedServiceImpl implements IFeedService{
 		super();
 		this.feedRepo = feedRepo;
 	}
-
+	
+	//Optional class: It is a public final class which is used to deal with NullPointerException in Java application.
+    //It provides methods to check the presence of value for particular variable.
+	
+	
 	// addFeed method is to add and save the feed details with feedId as primary key.
 	// throws FeedAlreadyExistsException if feed with feedId already exists.
 	@Override
