@@ -20,13 +20,11 @@ import com.cg.dca.repository.IFeedRepository;
 import com.cg.dca.repository.IResponseRepository;
 import com.cg.dca.repository.IUserRepository;
 
+//CommandLineRunner bean can be used to execute any code at the start of the application
+//DBInit class is to provide initial values in the database when springboot runs
 @Component
 public class DBInit implements CommandLineRunner{
-	                           //  this bean can be used to execute any code at the start of the application
-
-	//  this class is to provide initial values in the database when springboot runs
-	
-	
+	                          
 	@Autowired
 	IAdminRepository adminRepo;
 	
@@ -53,8 +51,8 @@ public class DBInit implements CommandLineRunner{
 		Admin admin = new Admin();
 		admin.setAdId(1);
 		admin.setAdName("Azmath");
-		admin.setAdPassword("1234");
-		admin.setAdUser("azzu");
+		admin.setAdPassword("123456789");
+		admin.setAdUser("azzu1");
 		adminRepo.save(admin);
 		
 		

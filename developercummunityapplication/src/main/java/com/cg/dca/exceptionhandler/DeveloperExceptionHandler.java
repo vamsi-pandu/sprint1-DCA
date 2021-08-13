@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.cg.dca.exception.DeveloperAlreadyExistsException;
 import com.cg.dca.exception.UnknownDeveloperException;
 
-
+//@ControllerAdvice is a specialization of the @Component annotation which allows to handle exceptions across the whole application in one global handling component.
 @ControllerAdvice
 public class DeveloperExceptionHandler {
 	
+	//@ExceptionHandler annotation indicates which type of Exception we want to handle
 	@ExceptionHandler(DeveloperAlreadyExistsException.class)
+	
+	//ResponseEntity gives the response status for the Http Request
 	public ResponseEntity<?> handleDeveloperDataError(DeveloperAlreadyExistsException e) {
 
 		Map<String, Object> error = new LinkedHashMap<>();

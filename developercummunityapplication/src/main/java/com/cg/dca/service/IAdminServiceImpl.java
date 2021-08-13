@@ -59,7 +59,7 @@ IAdminRepository adminRepo;
 		 	  devRepo.save(exists);
 		 }
 		 else 
-			 throw new AdminNotFoundException("Devloper With Id "+ devId+" Is Alreday Validated");
+			 throw new AdminNotFoundException("Devloper With Id "+ devId+" Is Already Validated");
 			 
 		return exists;
 	}
