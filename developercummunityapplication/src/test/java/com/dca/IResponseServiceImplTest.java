@@ -51,7 +51,7 @@ class IResponseServiceImplTest {
 
 		}
 
-		// assertEquals(savedresponse, service.addResponse(r) );
+		
 	}
 	@Test
 	public void getResponseByDeveloperTest() {
