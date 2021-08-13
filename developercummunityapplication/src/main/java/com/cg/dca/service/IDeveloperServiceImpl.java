@@ -22,6 +22,7 @@ import com.cg.dca.repository.IDeveloperRepository;
 @Service
 public class IDeveloperServiceImpl implements IDeveloperService   {
 	
+	//using the methods of crud repository
 	@Autowired
 	IDeveloperRepository devRepo;
 
@@ -31,13 +32,14 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 	}
 
 	@Override
+	//findById is Jpa repository method fetch data by primary key to check of its presence in database
 	public Optional<Developer> addDeveloper(Developer dev) throws DeveloperAlreadyExistsException {
 		Optional<Developer> existing = devRepo.findById(dev.getDevId());
 		if (existing.isPresent()) {
 
 			throw new DeveloperAlreadyExistsException("Developer With Id " + dev.getDevId() + " exists already");
 		}
-		devRepo.save(dev);
+		devRepo.save(dev); // save is jpa repository method
 		return existing;
 	}
 
@@ -63,13 +65,14 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 
 	@Override
 	public List<Developer> getAllDevelopers() {
-		List<Developer> listOfDevelopers = (List<Developer>) devRepo.findAll();
+		List<Developer> listOfDevelopers = (List<Developer>) devRepo.findAll(); // findAll is a jpa repository method fetch data from database
 		return listOfDevelopers;
 
 	}
 	
 	@Override
 	public List<Developer> getDeveloperBySkillLevel(SkillLevel  skillLevel) {
+		// findAllBySkillLevel is a method to check developer by SkillLevel 
 		List<Developer> listOfDeveloperBySkill = devRepo.findAllBySkillLevel(skillLevel);
 		if(listOfDeveloperBySkill.isEmpty())
 			throw new UnknownFeedException("No feed found with topic "+skillLevel);
