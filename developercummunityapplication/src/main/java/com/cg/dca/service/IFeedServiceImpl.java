@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.dca.entity.Developer;
 import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Topic;
 import com.cg.dca.exception.FeedAlreadyExistsException;
@@ -104,6 +105,13 @@ public class IFeedServiceImpl implements IFeedService{
 		if(listOfFeedByTopic.isEmpty())
 			throw new UnknownFeedException("No feed found with topic "+topic);
 		return listOfFeedByTopic;
+	}
+
+	@Override
+	public List<Feed> getAllFeeds() {
+		List<Feed> listOfFeeds = (List<Feed>) feedRepo.findAll(); // findAll is a jpa repository method fetch data from database
+		return listOfFeeds;
+		
 	}
 
 }

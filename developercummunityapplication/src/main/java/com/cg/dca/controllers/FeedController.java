@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.dca.entity.Developer;
 import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Topic;
 import com.cg.dca.service.IFeedService;
@@ -27,6 +29,7 @@ import com.cg.dca.service.IFeedService;
 
 @RestController    
 @RequestMapping("feed") 
+@CrossOrigin(origins = "http://localhost:4200")
 public class FeedController {
 	
 	@Autowired
@@ -37,7 +40,15 @@ public class FeedController {
 	
 	    //this method is to create new feed and save
 	    //@PostMapping annotated methods handle the HTTP POST requests matched with given URI expression.
-		@PostMapping("save")
+	   @GetMapping
+	    public ResponseEntity<?> getAllFeeds() {
+	 	List<Feed> list = (List<Feed>) service.getAllFeeds();
+
+		return new ResponseEntity<Object>(list, HttpStatus.OK);
+
+	    }
+	    
+	    @PostMapping("save")
 		public ResponseEntity<?> saveFeed(@Valid  @RequestBody Feed feed){    
 			service.addFeed(feed);
 			return new ResponseEntity<String>("Feed Added Successfully",HttpStatus.OK); 

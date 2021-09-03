@@ -3,6 +3,7 @@ package com.cg.dca.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.cg.dca.entity.Developer;
 import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Topic;
 
@@ -15,6 +16,8 @@ public interface IFeedService {
 	Optional<Feed> getFeed(int feedId);         //  get feed by feedId
 	
 	Optional<Feed> removeFeed(int feedId);
+	
+	List<Feed> getAllFeeds();
 	
 	List<Feed> getFeedsByDeveloper(int devId);      //  list all feed with same developerId
 	
