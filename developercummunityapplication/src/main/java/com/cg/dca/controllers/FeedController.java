@@ -3,6 +3,7 @@ package com.cg.dca.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class FeedController {
 	    //this method is to create new feed and save
 	    //@PostMapping annotated methods handle the HTTP POST requests matched with given URI expression.
 	   @GetMapping
-	    public ResponseEntity<?> getAllFeeds() {
+	    public ResponseEntity<?> getAllFeeds(HttpServletRequest request) {
 	 	List<Feed> list = (List<Feed>) service.getAllFeeds();
 
 		return new ResponseEntity<Object>(list, HttpStatus.OK);
@@ -56,7 +57,7 @@ public class FeedController {
 
 
         //this method is to get feed by providing feedId
-		@GetMapping("/getFeed/{feedId}")
+		@GetMapping("{feedId}")
 		public ResponseEntity<?> getFeed(@PathVariable("feedId") int feedId){
 			Optional<Feed> feed = service.getFeed(feedId);
 			return new ResponseEntity<Feed>(feed.get(),HttpStatus.OK);
@@ -66,7 +67,7 @@ public class FeedController {
 
         //this method is to update feed details
 		//@PutMapping annotation for mapping HTTP PUT requests onto specific handler methods.
-		@PutMapping("update")
+		@PutMapping("update/{feedId}")
 		public ResponseEntity<?> updateFeed(@RequestBody Feed feed){
 			service.editFeed(feed);
 			return new ResponseEntity<String>("Feed Updated Succesfully",HttpStatus.OK);

@@ -22,4 +22,7 @@ public interface IDeveloperService {
 	List<Developer> getAllDevelopers();
 	
 	List<Developer> getDeveloperBySkillLevel(SkillLevel  skillLevel);
+	
+
+	Optional<Developer> deleteDeveloper(int devId);
 }

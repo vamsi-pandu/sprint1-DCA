@@ -79,6 +79,18 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 		return listOfDeveloperBySkill;
 	}
 	
+	@Override
+	public Optional<Developer> deleteDeveloper(int devId)
+	{
+		Optional<Developer> optionalDelete = devRepo.findById(devId);
+		if(optionalDelete.isPresent()) {
+			devRepo.deleteById(devId);
+		    return optionalDelete;
+		}
+		else
+			throw new UnknownFeedException("Feed with "+devId+" does not exists");
+	}
+	
 
 }
 

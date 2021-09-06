@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -34,6 +35,7 @@ import com.cg.dca.service.IDeveloperServiceImpl;
 
 //@RequestMapping annotation maps HTTP requests to handler methods of  REST controllers.
 @RequestMapping("/developer")
+@CrossOrigin(origins = "http://localhost:4200")
 public class DeveloperController {
 
 	@Autowired
@@ -48,7 +50,7 @@ public class DeveloperController {
 	}
 
 	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
-	@GetMapping("/getDeveloperById/{devId}")
+	@GetMapping("{devId}")
 	public ResponseEntity<Object> getDeveloper(@PathVariable int devId) throws UnknownDeveloperException {
 
 		Optional<Developer> developer = service.getDeveloper(devId);
@@ -104,6 +106,12 @@ public class DeveloperController {
 		List<Developer> listOfDeveloperBySkills = (List<Developer>) service.getDeveloperBySkillLevel(skillLevel);
 
 		return new ResponseEntity<Object>(listOfDeveloperBySkills,HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/deleteDeveloper/{devId}")
+		public ResponseEntity<?> deleteDeveloper(@PathVariable("devId") int devId){
+			service.deleteDeveloper(devId);
+			return new ResponseEntity<String>("Developer Deleted Succesfully",HttpStatus.OK);
 	}
 
 
