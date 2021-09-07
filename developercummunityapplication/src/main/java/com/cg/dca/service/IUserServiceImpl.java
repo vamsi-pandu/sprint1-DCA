@@ -28,7 +28,7 @@ public class IUserServiceImpl implements IUserService{
 
 	@Override
 	public Optional<User> addUser(User user) {
-		//findById is the method to check the multiple responses by userId
+		//findById method is used to find the user id in the database
 		Optional<User> newUser = userRepo.findById(user.getUserId());
 
 		if(!newUser.isPresent()) {
