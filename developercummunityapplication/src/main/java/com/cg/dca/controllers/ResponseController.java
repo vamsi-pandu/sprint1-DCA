@@ -1,10 +1,15 @@
+
+
+
 package com.cg.dca.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.dca.entity.Developer;
 import com.cg.dca.entity.Response;
+import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.service.IResponseService;
 
 //@RestController is a specialized version of the controller. It includes the @Controller and @ResponseBody annotations
@@ -22,6 +29,7 @@ import com.cg.dca.service.IResponseService;
 
 //@RequestMapping annotation maps HTTP requests to handler methods of  REST controllers.
 @RequestMapping("developerCommunity/response")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ResponseController {
 	
 	@Autowired
@@ -33,6 +41,18 @@ public class ResponseController {
 		service.addResponse(response);
 		return new ResponseEntity<String>("Response added successfully",HttpStatus.OK);
 	}
+	
+	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
+		@GetMapping("{respId}")
+		public ResponseEntity<Object> getResponse(@PathVariable int respId)  {
+
+			Optional<Response> response = service.getResponse(respId);
+
+		
+
+			return new ResponseEntity<Object>(response.get(), HttpStatus.OK);
+
+		}
 	
 	//The PUT HTTP method is used to update the resource and @PutMapping annotation for mapping HTTP PUT requests onto specific handler methods.
 	@PutMapping("update")
