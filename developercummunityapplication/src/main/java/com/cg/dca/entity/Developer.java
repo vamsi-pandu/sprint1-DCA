@@ -57,12 +57,11 @@ public class Developer implements Serializable {
 
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="fk_user_id")
-	@JsonBackReference
 	private User user;
 
 	
 	@OneToMany(mappedBy="developer",cascade=CascadeType.ALL)
-	@JsonIgnore                  //@JsonIgnore is used at field level to mark a property or list of properties to be ignored.
+	                 //@JsonIgnore is used at field level to mark a property or list of properties to be ignored.
 	private  List<Feed> feedList;
 
 	@Column(name="is_verified")
