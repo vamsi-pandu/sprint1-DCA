@@ -154,14 +154,14 @@ public class DBInit implements CommandLineRunner{
 		feed2.setTotalComments(2);
 		feedRepo.save(feed2);
 		
-		
+	
 		Response response2 = new Response();
 		
 		//response.setRespId(12);
 		//res.setResponseTime(LocalDateTime.now());
 		//res.setUpdatedResponseDateTime(updatedResponseDateTime);
 		response2.setDeveloper(developer2);
-		response2.setFeed(feed1);
+		response2.setFeed(feed2);
 		response2.setAnswer("js is javascript");
 		responseRepo.save(response2);
 		
