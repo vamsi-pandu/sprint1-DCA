@@ -40,7 +40,7 @@ public class Response {
 	
 	@OneToOne
 	@JoinColumn(name ="fk_dev_id")
-	@JsonIgnore //@JsonIgnore is used at field level to mark a property or list of properties to be ignored.
+	//  @JsonIgnore //@JsonIgnore is used at field level to mark a property or list of properties to be ignored.
 	private Developer developer;
 	
 	@ManyToOne

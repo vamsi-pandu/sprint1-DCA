@@ -47,7 +47,7 @@ public class Feed {
 	
 	@ManyToOne                               //  one developer is mapped with one or many feeds
 	@JoinColumn(name ="fk_developer_id")     //  this column is joined in the feed entity table
-	@JsonBackReference                       // is used to mark child objects.
+	//@JsonBackReference                       // is used to mark child objects.
 	private Developer developer;
 	
 	@OneToMany(mappedBy="feed",cascade=CascadeType.ALL)  //  one feed is mapped to many responses
