@@ -11,6 +11,7 @@ import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.Topic;
 import com.cg.dca.exception.FeedAlreadyExistsException;
 import com.cg.dca.exception.UnknownFeedException;
+import com.cg.dca.repository.IDeveloperRepository;
 import com.cg.dca.repository.IFeedRepository;
 
 @Service
@@ -18,7 +19,8 @@ public class IFeedServiceImpl implements IFeedService{
 
 	@Autowired
 	IFeedRepository feedRepo;
-	
+	@Autowired
+	IDeveloperRepository devRepo;
 	public IFeedServiceImpl(IFeedRepository feedRepo) {
 		super();
 		this.feedRepo = feedRepo;
@@ -31,9 +33,10 @@ public class IFeedServiceImpl implements IFeedService{
 	// addFeed method is to add and save the feed details with feedId as primary key.
 	// throws FeedAlreadyExistsException if feed with feedId already exists.
 	@Override
-	public Optional<Feed> addFeed(Feed feed) {
+	public Optional<Feed> addFeed(Feed feed,int devId) {
 	Optional<Feed> optionalFeed = feedRepo.findById(feed.getFeedId());
-
+    Developer developer = devRepo.findByDevId(devId);
+    feed.setDeveloper(developer);
 	if(!optionalFeed.isPresent()) {
 		feedRepo.save(feed);
 		return optionalFeed;

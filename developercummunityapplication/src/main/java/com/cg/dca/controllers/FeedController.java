@@ -34,7 +34,9 @@ import com.cg.dca.service.IFeedService;
 public class FeedController {
 	
 	@Autowired
-	IFeedService service;
+	IFeedService service; 
+	
+	Developer developer = null;
 
 	 //RequestBody-spring will bind incoming HTTP request body(for the url method in @RequestMapping for that method)to that parameter
 	 //ResponseEntity<> requests whole HTTP response:(status code,headers,body) 
@@ -49,9 +51,11 @@ public class FeedController {
 
 	    }
 	    
-	    @PostMapping("save")
-		public ResponseEntity<?> saveFeed(@Valid  @RequestBody Feed feed){    
-			service.addFeed(feed);
+	    @PostMapping("/save/{devId}")
+		public ResponseEntity<?> saveFeed(@Valid  @RequestBody Feed feed, @PathVariable("devId") int devId){    
+			System.out.println(devId);
+			System.out.println(feed);
+	    	service.addFeed(feed,devId);
 			return new ResponseEntity<String>("Feed Added Successfully",HttpStatus.OK); 
 		}
 
