@@ -140,6 +140,12 @@ public class Developer implements Serializable {
 	public void setIsBlocked(Boolean isBlocked) {
 		this.isBlocked = isBlocked;
 	}
+
+	@Override
+	public String toString() {
+		return "Developer [devId=" + devId + ", name=" + name + ", email=" + email + ", skillLevel=" + skillLevel
+				+ ", memberSince=" + memberSince + "]";
+	}
 	
 
 }

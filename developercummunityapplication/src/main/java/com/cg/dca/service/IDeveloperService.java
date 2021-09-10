@@ -11,7 +11,7 @@ import com.cg.dca.exception.UnknownDeveloperException;
 
 public interface IDeveloperService {
 
-	 Optional<Developer> addDeveloper(Developer dev);
+	 Optional<Developer> addDeveloper(Developer dev, String userId);
 	
 	 Optional<Developer> editDeveloper(Developer dev);
 	

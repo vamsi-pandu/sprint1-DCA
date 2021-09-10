@@ -53,10 +53,14 @@ public class DeveloperController {
 	User user = null;
 
 	//@PostMapping annotated methods handle the HTTP POST requests matched with given URI expression.
-	@PostMapping("/addDeveloper")
-	public ResponseEntity<String> addDeveloper(@Valid @RequestBody Developer dev,HttpServletRequest request) throws DeveloperAlreadyExistsException {
-		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
-		service.addDeveloper(dev);
+	@PostMapping("/addDeveloper/{userId}")
+	public ResponseEntity<String> addDeveloper(@Valid @RequestBody Developer dev, @PathVariable("userId") String userId ,HttpServletRequest request) throws DeveloperAlreadyExistsException {
+//		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
+		System.out.println(userId);
+		System.out.println(dev);
+//		System.out.println(dev.getUser().getRole());
+		
+		service.addDeveloper(dev,userId);
 		return new ResponseEntity<String>("Developer Added Successfully", HttpStatus.OK);
 
 	}
@@ -64,7 +68,7 @@ public class DeveloperController {
 	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 	@GetMapping("{devId}")
 	public ResponseEntity<Object> getDeveloper(@PathVariable int devId,HttpServletRequest request) throws UnknownDeveloperException {
-		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
+//		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 		Optional<Developer> developer = service.getDeveloper(devId);
 
 	
@@ -76,7 +80,7 @@ public class DeveloperController {
 	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 	@GetMapping("/isBlocked/{devId}")
 	public ResponseEntity<String> getStatus(@PathVariable("devId") int devId,HttpServletRequest request) {
-		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
+//		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 		Optional<Developer> opt = service.getDeveloper(devId);
 		if(!(opt.isPresent())){
 				throw new UnknownDeveloperException("developer with Id "+devId+" not present");
@@ -99,7 +103,7 @@ public class DeveloperController {
 	//@PathVariable annotation can be used to handle template variables in the request URI mapping, and set them as method parameters.
 	public ResponseEntity<String> editDeveloper(@RequestBody Developer dev, @PathVariable int devId,HttpServletRequest request)
 			throws UnknownDeveloperException {
-		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
+//		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 		service.editDeveloper(dev);
 		return new ResponseEntity<String>("Developer Updated Succesfully", HttpStatus.OK);
 
@@ -108,7 +112,7 @@ public class DeveloperController {
 	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 	@GetMapping("/getAllDeveloper")
 	public ResponseEntity<?> getAllDevelopers(HttpServletRequest request) {
-		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
+//		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 		List<Developer> list = (List<Developer>) service.getAllDevelopers();
 
 		return new ResponseEntity<Object>(list, HttpStatus.OK);
@@ -126,7 +130,7 @@ public class DeveloperController {
 	
 	@DeleteMapping("/deleteDeveloper/{devId}")
 		public ResponseEntity<?> deleteDeveloper(@PathVariable("devId") int devId,HttpServletRequest request){
-		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
+//		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 		service.deleteDeveloper(devId);
 			return new ResponseEntity<String>("Developer Deleted Succesfully",HttpStatus.OK);
 	}

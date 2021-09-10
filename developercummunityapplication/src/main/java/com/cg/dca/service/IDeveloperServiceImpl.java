@@ -12,10 +12,12 @@ import com.cg.dca.entity.Developer;
 import com.cg.dca.entity.Feed;
 import com.cg.dca.entity.SkillLevel;
 import com.cg.dca.entity.Topic;
+import com.cg.dca.entity.User;
 import com.cg.dca.exception.DeveloperAlreadyExistsException;
 import com.cg.dca.exception.UnknownDeveloperException;
 import com.cg.dca.exception.UnknownFeedException;
 import com.cg.dca.repository.IDeveloperRepository;
+import com.cg.dca.repository.IUserRepository;
 
 
 
@@ -25,6 +27,9 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 	//using the methods of crud repository
 	@Autowired
 	IDeveloperRepository devRepo;
+	
+	@Autowired
+	IUserRepository userRepo;
 
 	public IDeveloperServiceImpl(IDeveloperRepository developerRepo) {
 		super();
@@ -33,8 +38,11 @@ public class IDeveloperServiceImpl implements IDeveloperService   {
 
 	@Override
 	//findById is Jpa repository method fetch data by primary key to check of its presence in database
-	public Optional<Developer> addDeveloper(Developer dev) throws DeveloperAlreadyExistsException {
+	public Optional<Developer> addDeveloper(Developer dev, String userId) throws DeveloperAlreadyExistsException {
 		Optional<Developer> existing = devRepo.findById(dev.getDevId());
+		
+		User user = userRepo.getOne(userId);
+		dev.setUser(user);
 		if (existing.isPresent()) {
 
 			throw new DeveloperAlreadyExistsException("Developer With Id " + dev.getDevId() + " exists already");
