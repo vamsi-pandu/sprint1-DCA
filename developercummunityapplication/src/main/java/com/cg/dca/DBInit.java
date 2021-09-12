@@ -60,12 +60,12 @@ public class DBInit implements CommandLineRunner{
 		
 		
 		
-		User user = new User();
+		User u1 = new User();
 		
-		user.setUserId("user1");
-		user.setPassword("password1");
-		user.setRole("senior_developer");
-		userRepo.save(user);
+		u1.setUserId("sai1");
+		u1.setPassword("password1");
+		u1.setRole("senior_developer");
+		userRepo.save(u1);
 		
 		
 		Developer developer1 = new Developer();
@@ -79,7 +79,7 @@ public class DBInit implements CommandLineRunner{
 		developer1.setName("Raju");
 		developer1.setSkillLevel(SkillLevel.INTERMEDIATE);
 		//dev.setTotalFeeds(1);
-		developer1.setUser(user);
+		developer1.setUser(u1);
 		developerRepo.save(developer1);
 		
 		
@@ -119,12 +119,12 @@ public class DBInit implements CommandLineRunner{
 		
 		
 	
-		User user2 = new User();
+		User u2 = new User();
 		
-		user2.setUserId("user2");
-		user2.setPassword("password2");
-		user2.setRole("junior_developer");
-		userRepo.save(user2);
+		u2.setUserId("azmath2");
+		u2.setPassword("password2");
+		u2.setRole("junior_developer");
+		userRepo.save(u2);
 		
 		
 		Developer developer2 = new Developer();
@@ -138,7 +138,7 @@ public class DBInit implements CommandLineRunner{
 		developer2.setName("Sai");
 		developer2.setSkillLevel(SkillLevel.INTERMEDIATE);
 		//dev.setTotalFeeds(1);
-		developer2.setUser(user2);
+		developer2.setUser(u2);
 		developerRepo.save(developer2);
 		
 		
@@ -226,12 +226,12 @@ public class DBInit implements CommandLineRunner{
 		
 		
 		
-		User user3 = new User();
+		User u3 = new User();
 		
-		user3.setUserId("user3");
-		user3.setPassword("password3");
-		user3.setRole("analyst");
-		userRepo.save(user3);
+		u3.setUserId("vamsi3");
+		u3.setPassword("password3");
+		u3.setRole("analyst");
+		userRepo.save(u3);
 		
 	
 		Developer developer3 = new Developer();
@@ -245,9 +245,9 @@ public class DBInit implements CommandLineRunner{
 		developer3.setName("Kumar");
 		developer3.setSkillLevel(SkillLevel.BEGINNER);
 		//dev.setTotalFeeds(1);
-		developer3.setUser(user3);
+		developer3.setUser(u3);
 		developerRepo.save(developer3);
-		
+	
 		
 		Feed feed5 = new Feed();
 		

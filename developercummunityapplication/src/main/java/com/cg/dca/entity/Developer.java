@@ -115,13 +115,16 @@ public class Developer implements Serializable {
 		this.totalFeeds = totalFeeds;
 	}
 	
+	
+	
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	public List<Feed> getFeedList() {
 		return feedList;
 	}
@@ -146,6 +149,7 @@ public class Developer implements Serializable {
 		return "Developer [devId=" + devId + ", name=" + name + ", email=" + email + ", skillLevel=" + skillLevel
 				+ ", memberSince=" + memberSince + "]";
 	}
+
 	
 
 }

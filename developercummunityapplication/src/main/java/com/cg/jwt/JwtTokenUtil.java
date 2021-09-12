@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.cg.dca.entity.Admin;
 import com.cg.dca.entity.User;
 import com.cg.dca.exception.InvalidTokenException;
 
@@ -30,12 +31,25 @@ public class JwtTokenUtil implements Serializable {
 	@Value("${jwt.secret}")
 	private String secretKey;
 	
+	public String generateAdminToken(Admin admin) {
+
+		Claims claims = Jwts.claims();
+//		claims.setSubject(Integer. admin.getAdminId());
+		claims.put("role", "admin");
+
+		return Jwts.builder()
+				.setClaims(claims)
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
+				.signWith(SignatureAlgorithm.HS512 ,secretKey)
+				.compact();
+	}
 	// generate token for user
-	public String generateToken(User user) {
+	public String generateUserToken(User user) {
 
 		Claims claims = Jwts.claims();
 		claims.setSubject(user.getUserId());
-		claims.put("role", user.getRole());
+		claims.put("role", "user");
 
 		return Jwts.builder()
 				.setClaims(claims)
@@ -46,7 +60,7 @@ public class JwtTokenUtil implements Serializable {
 	}
 
 	// validate and extract User details from header
-	public User validateTokenAndGetUserDetails(HttpServletRequest request) {
+	public String validateTokenAndGetUserDetails(HttpServletRequest request) {
 		final String tokenHeader = request.getHeader("Authorization");
 
 		String token = null;
@@ -62,10 +76,10 @@ public class JwtTokenUtil implements Serializable {
 		
 		try {
 			Claims claims =Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
-			User user = new User();
-			user.setUserId(claims.getSubject());
-			user.setRole((String) claims.get("role"));
-			return user;
+			//User user = new User();
+			//user.setUserId(claims.getSubject());
+			System.out.println(claims.getExpiration());
+			return (String)claims.get("role");
 		} catch (SignatureException ex) {
 			throw new InvalidTokenException("Token Signature not valid");
 			

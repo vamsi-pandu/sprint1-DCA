@@ -122,7 +122,7 @@ public class DeveloperController {
 	//@GetMapping annotated methods handle the HTTP GET requests matched with given URI expression
 	@GetMapping("/developer/{skillLevel}")
 	public ResponseEntity<?> getDeveloperBySkill(@PathVariable("skillLevel") SkillLevel  skillLevel,HttpServletRequest request){
-		user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
+		//user = jwtTokenUtil.validateTokenAndGetUserDetails(request);
 		List<Developer> listOfDeveloperBySkills = (List<Developer>) service.getDeveloperBySkillLevel(skillLevel);
 
 		return new ResponseEntity<Object>(listOfDeveloperBySkills,HttpStatus.OK);

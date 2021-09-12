@@ -27,7 +27,7 @@ class IUserServiceImplTest {
 	IUserService service = new IUserServiceImpl(repo);
 	
 	@Test
-	void TestAdduser() {
+	void TestAddusers() {
 		User user1=new User();
 		user1.setUserId("shashi");
 		user1.setPassword("password1");
@@ -38,20 +38,20 @@ class IUserServiceImplTest {
 	        
 		}
 	@Test
-	void testGetUserById() {
-		User user1=new User();
-		user1.setUserId("shashi");
-		user1.setPassword("password1");
-		user1.setRole("senior_developer");
+	void testGetUsersById() {
+		User users1=new User();
+		users1.setUserId("shashi");
+		users1.setPassword("password1");
+		users1.setRole("senior_developer");
 		
-		User user2=new User();
-		user2.setUserId("user2");
-		user2.setPassword("password2");
-		user2.setRole("junior_developer");
+		User users2=new User();
+		users2.setUserId("user2");
+		users2.setPassword("password2");
+		users2.setRole("junior_developer");
 		
 
 		when(repo.existsById("user1")).thenReturn(true);
-		assertEquals("senior_developer", user1.getRole());
+		assertEquals("senior_developer", users1.getRole());
 	}
 	
 	@Test
